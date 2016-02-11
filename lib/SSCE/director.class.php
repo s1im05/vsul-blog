@@ -9,7 +9,7 @@ class Director extends Base {
     
     public function __construct($aOptions){
         parent::__construct($aOptions);
-        require_once 'controllers/helpers/main.php';
+        require_once 'helpers/controller.helper.php';
     }
     
     public function bootstrap() {

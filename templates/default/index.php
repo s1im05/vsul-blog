@@ -35,6 +35,7 @@
     
     <aside>
         Aside
+        <?=date2ru(0)?>
     </aside>
     
     <footer>
