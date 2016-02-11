@@ -1,4 +1,4 @@
-(function(w, $, u){
+(function(w, u){
     $(function(){
         $('#search_btn').on('click', function(e){
             e.preventDefault();

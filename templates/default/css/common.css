@@ -1,7 +1,7 @@
 /* common */
 body {
     font-family: Calibri, sans-serif;
-    background: #f0f0f0;
+    background: #fff;
 }
 a {
     /*color: #9C5E39;*/
@@ -15,6 +15,24 @@ a:hover, a:focus {
 .b-errorbody {
     padding: 100px 0;
 }
+
+.b-navtop {
+    padding: 1em 0;
+}
+.b-navtop__button {
+    border: none;
+}
+.b-center {
+    margin-bottom: 3em;
+}
+.b-footer {
+    padding: 40px 0;
+    border-top: 1px solid #eee;
+    background: #f9f9f9;
+    color: #999;
+    text-align: center;
+}
+
 
 /* helpers */
 .h-shadow {
