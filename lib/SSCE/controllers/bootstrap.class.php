@@ -1,9 +1,12 @@
 <?php
-class Bootstrap_Controller extends Controller {
+namespace SSCE\Controllers;
+
+class Bootstrap extends Base {
     
     public function run(){
 
-        $oUser      = new User_Model($this->options);
+        $oUser      = new \SSCE\Models\User($this->options);
+
         if (isset($_POST['token'])){
             $oUser->loginLoginza($_POST['token']);
         } elseif (!$oUser->isLogged()){
