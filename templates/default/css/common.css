@@ -16,6 +16,13 @@ a:hover, a:focus {
     padding: 100px 0;
 }
 
+.b-navbtn {
+    margin-right: 1em;
+}
+.b-sign, .b-sign:hover {
+    color: #696;
+    text-decoration: underline;
+}
 .b-navtop {
     padding: 1em 0;
 }

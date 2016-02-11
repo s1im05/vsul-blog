@@ -25,31 +25,24 @@
         <nav class="b-navtop">
             <div class="row">
                 <div class="col-sm-8 hidden-xs">
-                    <a class="btn btn-default b-navtop__button" href="/">Main</a>
+                    <a class="btn btn-default b-navtop__button active" href="/">Main</a>
                     <a class="btn btn-default b-navtop__button" href="#">ES5</a>
                     <a class="btn btn-default b-navtop__button" href="#">ES6</a>
                     <a class="btn btn-default b-navtop__button" href="#">FW</a>
                     <a class="btn btn-default b-navtop__button" href="#">About</a>
-                    <a class="btn btn-default b-navtop__button" href="#">Sign In</a>
+                    <a class="btn btn-default b-navtop__button b-sign" href="#">Sign In</a>
                 </div>
                 <div class="col-sm-4">
                     <div class="pull-left dropdown visible-xs">
-                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+                        <a class="btn btn-default dropdown-toggle b-navbtn" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
                         <ul class="dropdown-menu">
-                            <li class="active" role="presentation"><a href="/">Все разделы</a></li>
-                            <li role="presentation"><a href="/chapter/pictures">Картинки</a></li>
-                            <li role="presentation"><a href="/chapter/girls">Девушки</a></li>
-                            <li role="presentation"><a href="/chapter/comics">Комиксы</a></li>
-                            <li role="presentation"><a href="/chapter/gifs">Гифки</a></li>
-                            <li role="presentation"><a href="/chapter/video">Видео</a></li>
-                            <li role="presentation"><a href="/chapter/coubs">Coubs</a></li>
-                            <li role="presentation"><a href="/chapter/anime">Аниме</a></li>
-                            <li class="divider" role="separator"></li>
-                            <li role="presentation"><a href="/home">Личный кабинет</a></li>
-                            <li role="presentation"><a href="/logout">Выйти</a></li>
+                            <li role="presentation" class="active"><a href="/">Main</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li role="presentation"><a href="/">Main</a></li>
+                            <li role="presentation"><a href="/">Main</a></li>
                         </ul>
                     </div>
-                    <form class="form-inline b-headerform">
+                    <form class="form-inline b-headerform text-right">
                         <div class="input-group">
                             <input type="text" placeholder="поиск" id="search_query" class="form-control"> 
                             <span class="input-group-addon btn b-search__btn" id="search_btn">найти</span>
