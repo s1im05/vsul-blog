@@ -57,11 +57,18 @@
             <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
         </header>
         <div class="row b-center">
-            <main class="col-sm-9">
-                <h2>Main content</h2>
+            <main class="col-sm-8 col-lg-9">
+                <h2 class="b-post__title">Main content</h2>
             </main>
-            <aside class="col-sm-3">
-                Aside
+            <aside class="col-sm-4 col-lg-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Block Title
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
             </aside>
         </div>
     </div>
