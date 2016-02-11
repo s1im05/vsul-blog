@@ -44,8 +44,8 @@
                     </div>
                     <form class="form-inline b-headerform text-right">
                         <div class="input-group">
-                            <input type="text" placeholder="поиск" id="search_query" class="form-control"> 
-                            <span class="input-group-addon btn b-search__btn" id="search_btn">найти</span>
+                            <input type="text" placeholder="Search" id="search_query" class="form-control"> 
+                            <span class="input-group-addon btn b-search__btn" id="search_btn"><i class="fa fa-search"></i></span>
                         </div>
                     </form>
                 </div>
@@ -56,11 +56,11 @@
             <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
         </header>
-        <div class="row b-center">
-            <main class="col-sm-8 col-lg-9">
+        <div class="row">
+            <main class="col-sm-8 col-lg-9 b-center">
                 <h2 class="b-post__title">Main content</h2>
             </main>
-            <aside class="col-sm-4 col-lg-3">
+            <aside class="col-sm-4 col-lg-3 b-center">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Block Title
