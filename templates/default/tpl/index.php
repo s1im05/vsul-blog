@@ -58,7 +58,7 @@
         </header>
         <div class="row">
             <main class="col-sm-8 col-lg-9 b-center">
-                <h2 class="b-post__title">Main content</h2>
+                <? include $template;?>
             </main>
             <aside class="col-sm-4 col-lg-3 b-center">
                 <div class="panel panel-default">
