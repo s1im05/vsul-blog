@@ -10,4 +10,11 @@ class Blog extends Base {
         
         $this->view->assign("aData", $aData);
     }
+    
+    public function byNameAction($sName){
+        $aPost  = $this->db->selectRow("SELECT * FROM ?_articles WHERE name = ? LIMIT 1;", $sName);
+        
+        $this->setTemplate('article.tpl.php');
+        $this->view->assign("aPost", $aPost);
+    }
 }

@@ -1,5 +1,7 @@
 <?php
-class Home_Controller extends Controller {
+namespace SSCE\Controllers;
+
+class Home extends Base {
     
     protected $_sTemplate   = 'home.php';
     protected $_sLayout     = 'index.php';

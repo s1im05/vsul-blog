@@ -30,7 +30,12 @@
                     <a class="btn btn-default b-navtop__button" href="#">ES6</a>
                     <a class="btn btn-default b-navtop__button" href="#">FW</a>
                     <a class="btn btn-default b-navtop__button" href="#">About</a>
-                    <a class="btn btn-default b-navtop__button b-sign" href="#">Sign In</a>
+                    <? if ($bIsLogged) :?>
+                        <a class="btn btn-default b-navtop__button b-sign" href="/home"><?=$aUser['nickname']?></a>
+                        <a class="btn btn-default btn-xs" href="/logout">logout</a>
+                    <? else :?>
+                        <a class="btn btn-default b-navtop__button b-sign loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Sign In</a>
+                    <? endif;?>
                 </div>
                 <div class="col-sm-4">
                     <div class="pull-left dropdown visible-xs">
@@ -38,8 +43,12 @@
                         <ul class="dropdown-menu">
                             <li role="presentation" class="active"><a href="/">Main</a></li>
                             <li role="separator" class="divider"></li>
-                            <li role="presentation"><a href="/">Main</a></li>
-                            <li role="presentation"><a href="/">Main</a></li>
+                            <? if ($bIsLogged) :?>
+                                <li role="presentation"><a href="/home"><?=$aUser['nickname']?></a></li>
+                                <li role="presentation"><a href="/logout">logout</a></li>
+                            <? else :?>
+                                <li role="presentation"><a class="loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Sign In</a></li>
+                            <? endif;?>
                         </ul>
                     </div>
                     <form class="form-inline b-headerform text-right">

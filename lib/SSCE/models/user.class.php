@@ -10,10 +10,15 @@ class User extends Base {
     }
     
     public function __get($sKey){
-        $mGet   = parent::__get($sKey);
-        if ($mGet !== null) {
-            return $mGet;
+        if ($sKey == 'data' && isset($_SESSION['user'])){
+            return $_SESSION['user'];
+        } else {
+            $mGet   = parent::__get($sKey);
+            if ($mGet !== null) {
+                return $mGet;
+            }
         }
+        
         if (isset($_SESSION['user'][$sKey])){
             return $_SESSION['user'][$sKey];
         } else {

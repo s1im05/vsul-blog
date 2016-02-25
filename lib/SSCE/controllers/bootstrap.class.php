@@ -18,5 +18,6 @@ class Bootstrap extends Base {
         }
 
         $this->view->assign('bIsLogged', $oUser->isLogged());
+        $this->view->assign('aUser', $oUser->data);
     }
 }

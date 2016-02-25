@@ -1,33 +1,31 @@
 <?php
-class Rss_Controller extends Controller {
+namespace SSCE\Controllers;
+
+class Rss extends Base {
     
     protected $_sLayout     = 'rss.php';
 
-
     public function rssAction(){
         $aRss   = array(
-            'title'         => 'Тямпуру! Все только самое отборное и интересное!',
-            'description'   => '',
+            'title'         => $this->config->project->title,
+            'description'   => $this->config->project->description,
             'items'         => $this->db->select("SELECT
-                                                            p.id,
-                                                            p.title,
-                                                            p.announce AS description,
-                                                            p.cdate AS date,
-                                                            p.tags
+                                                            id,
+                                                            title,
+                                                            text_short AS description,
+                                                            date_c AS date
                                                         FROM
-                                                            ?_posts p
+                                                            ?_articles
                                                         WHERE
-                                                            p.cdate < NOW()
+                                                            date_c < NOW()
                                                         ORDER BY
-                                                            p.id DESC
+                                                            date_c DESC
                                                         LIMIT 50;"));
         if ( !empty( $aRss['items'] ) ) {
             foreach ( $aRss['items'] as $iKey => $aVal ) {
                 $aRss['items'][$iKey]['description']    = str_replace( '<img','<img style="max-width: 570px;"', $aVal['description']);
-                $aRss['items'][$iKey]['tags']           = prepareTags($aVal['tags']);
             }
         }
         $this->view->assign('aRss', $aRss);
     }
-
 }

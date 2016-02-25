@@ -20,13 +20,18 @@
             "params": ["query"]
         },{
             "path": "\\/logout",
-            "controller": "chapter",
+            "controller": "blog",
             "action": "all"
         },{
             "path": "\\/rss",
             "controller": "rss",
             "action": "rss",
             "header": "Content-type: application/xhtml+xml; charset=UTF-8"
+        },{
+            "path": "\\/([a-z_-]{3,})",
+            "controller": "blog",
+            "action": "byName",
+            "params": ["name"]
         }
     ]
 }

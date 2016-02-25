@@ -21,7 +21,10 @@ a:hover, a:focus {
 }
 .b-sign, .b-sign:hover {
     color: #696;
+    max-width: 150px;
+    overflow: hidden;
     text-decoration: underline;
+    text-overflow: ellipsis;
 }
 .b-post__title {
     margin-top: 0;
@@ -41,6 +44,12 @@ a:hover, a:focus {
     background: #f9f9f9;
     color: #999;
     text-align: center;
+}
+.b-article {
+    margin-bottom: 2em;
+}
+.b-article__title {
+    margin-top: 0;
 }
 
 
