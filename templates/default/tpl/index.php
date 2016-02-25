@@ -24,16 +24,24 @@
     <div class="container">
         <nav class="b-navtop">
             <div class="row">
-                <div class="col-sm-8 hidden-xs">
+                <div class="col-sm-8 dropdown hidden-xs">
+                    <? if ($bIsLogged) :?>
+                        <a class="btn btn-sm dropdown-toggle btn-default" data-toggle="dropdown">
+                            <img src="<?=$aUser['photo']?>" class="b-avatar-xs">
+                            &nbsp;<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation"><a href="/home"><?=$aUser['nickname']?></a></li>
+                            <li role="presentation"><a href="/logout">logout</a></li>
+                        </ul>
+                    <? endif;?>
+                    
                     <a class="btn btn-default b-navtop__button active" href="/">Main</a>
                     <a class="btn btn-default b-navtop__button" href="#">ES5</a>
                     <a class="btn btn-default b-navtop__button" href="#">ES6</a>
                     <a class="btn btn-default b-navtop__button" href="#">FW</a>
                     <a class="btn btn-default b-navtop__button" href="#">About</a>
-                    <? if ($bIsLogged) :?>
-                        <a class="btn btn-default b-navtop__button b-sign" href="/home"><?=$aUser['nickname']?></a>
-                        <a class="btn btn-default btn-xs" href="/logout">logout</a>
-                    <? else :?>
+                    <? if (!$bIsLogged) :?>
                         <a class="btn btn-default b-navtop__button b-sign loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Sign In</a>
                     <? endif;?>
                 </div>
@@ -75,7 +83,7 @@
                         Block Title
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        <a href="/rss"><i class="fa fa-fw fa-rss"></i> RSS-feed</a>
                     </div>
                 </div>
             </aside>

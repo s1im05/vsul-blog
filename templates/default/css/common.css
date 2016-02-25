@@ -26,6 +26,10 @@ a:hover, a:focus {
     text-decoration: underline;
     text-overflow: ellipsis;
 }
+.b-avatar-xs {
+    max-height: 2.5em;
+    max-width: 2.5em;
+}
 .b-post__title {
     margin-top: 0;
 }
