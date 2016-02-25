@@ -14,7 +14,7 @@
             "controller": "home",
             "action": "index"
         },{
-            "path": "\\/search\\/(.{3,255})",
+            "path": "\\/search\\/(.{1,255})",
             "controller": "search",
             "action": "search",
             "params": ["query"]

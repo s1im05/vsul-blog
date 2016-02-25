@@ -12,9 +12,11 @@ class Blog extends Base {
     }
     
     public function byNameAction($sName){
-        $aPost  = $this->db->selectRow("SELECT * FROM ?_articles WHERE name = ? LIMIT 1;", $sName);
-        
-        $this->setTemplate('article.tpl.php');
-        $this->view->assign("aPost", $aPost);
+        if ($aPost  = $this->db->selectRow("SELECT * FROM ?_articles WHERE name = ? LIMIT 1;", $sName)){
+            $this->view->assign("aPost", $aPost);
+            $this->setTemplate('article.tpl.php');
+        } else {
+            $this->request->go404();
+        }
     }
 }

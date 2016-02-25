@@ -58,7 +58,7 @@
                             <? endif;?>
                         </ul>
                     </div>
-                    <form class="form-inline b-headerform text-right">
+                    <form class="form-inline b-headerform text-right" id="search">
                         <div class="input-group">
                             <input type="text" placeholder="Search" id="search_query" class="form-control"> 
                             <span class="input-group-addon btn b-search__btn" id="search_btn"><i class="fa fa-search"></i></span>

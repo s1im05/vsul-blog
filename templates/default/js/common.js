@@ -1,4 +1,4 @@
-(function(w, u){
+(function(w, $, u){
     $(function(){
         $('#search_btn').on('click', function(e){
             e.preventDefault();
@@ -7,8 +7,6 @@
         
         $('#search').on('submit', function(e){
             if ($('#search_query').val() === '') {
-                e.preventDefault();
-            } else if ($('#search_query').val().length < 3) {
                 e.preventDefault();
             } else {
                 $(this).attr('action', '/search/'+$('#search_query').val());
