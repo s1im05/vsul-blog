@@ -1,4 +1,3 @@
-<p><a id="add" class="btn btn-success">Добавить</a></p>
 <div class="panel panel-default hidden" id="main_form_panel">
     <div class="panel-heading">
         Форма редактирования записей
@@ -36,6 +35,8 @@
         </form>
     </div>
 </div>
+
+<p><a id="add" class="btn btn-success">Добавить</a></p>
 
 <? if ($aData) :?>
     <table class="table table-striped" id="list">
@@ -101,6 +102,7 @@
                 $(this).trumbowyg('empty');
             });
             $('#main_form_panel').removeClass('hidden');
+            w.location.hash = '#main_form_panel';
         });
         
         var iSmphr   = 0;
@@ -174,7 +176,7 @@
         });
         
         $('textarea', '#main_form_panel').trumbowyg({
-            lang: 'ru'
+            'lang': 'ru'
         });
         
         $('#main_form_panel').on('click', '.b-cancel', function(e){
