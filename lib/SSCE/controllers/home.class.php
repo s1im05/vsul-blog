@@ -3,12 +3,12 @@ namespace SSCE\Controllers;
 
 class Home extends Base {
     
-    protected $_sTemplate   = 'home.php';
+    protected $_sTemplate   = 'home.tpl.php';
     protected $_sLayout     = 'index.php';
     
 
     public function indexAction(){
-        $oUser   = new User_Model($this->options);
+        $oUser   = new \SSCE\Models\User($this->options);
         if (!$oUser->isLogged()){
             $this->request->go('/');
         }
@@ -25,81 +25,7 @@ class Home extends Base {
             $this->view->assign('sViewType', isset($_COOKIE['vt'])?($_COOKIE['vt']=='list' ? 'list':'thumb'):'thumb');
         }
         
-        $this->setTitle('Домашняя страница');
-    }
-    
-    public function getCommentAction($iPage){
-        
-        $oUser   = new User_Model($this->options);
-        if (!$oUser->isLogged()){
-            return;
-        }
-        
-        $iLimit = (int)$this->config->project->postsppage;
-        
-        $aComments  = $this->db->selectPage($iCnt,"SELECT
-                                                    c.*,
-                                                    p.title,
-                                                    p.thumb
-                                                FROM
-                                                    ?_comments c,
-                                                    ?_posts p
-                                                WHERE
-                                                    p.id        = c.post_id AND
-                                                    c.user_id   = ?d
-                                                ORDER BY
-                                                    c.cdate DESC
-                                                LIMIT ?d, ?d",
-                                                $oUser->id,
-                                                $iPage*$iLimit,
-                                                $iLimit);
-                                                
-        $this->setLayout('ajax_template.php');
-        $this->setTemplate('home_list_comments.php');
-        
-        $this->view->assign('aCommentList',     $aComments);
-        $this->view->assign('iPage',            $iPage);
-        $this->view->assign('bAllLoaded',       ($iPage+1)*$iLimit >= $iCnt);
-    }
-    
-    public function getLikeAction($iPage){
-        
-        $oUser   = new User_Model($this->options);
-        if (!$oUser->isLogged()){
-            return;
-        }
-        
-        $iLimit = (int)$this->config->project->postsppage;
-        
-        $aLikes = $this->db->selectPage($iCnt,"SELECT
-                                                    p.*,
-                                                    c.title AS chapter_title,
-                                                    c.class AS chapter_name,
-                                                    pl.cdate AS like_date,
-                                                    true AS like_state
-                                                FROM
-                                                    ?_posts p,
-                                                    ?_chapters c,
-                                                    ?_posts__likes pl
-                                                WHERE
-                                                    p.id        = pl.post_id AND
-                                                    c.id        = p.chapter_id AND
-                                                    pl.user_id  = ?d AND
-                                                    pl.state    = 1
-                                                ORDER BY
-                                                    pl.cdate DESC
-                                                LIMIT ?d, ?d",
-                                                $oUser->id,
-                                                $iPage*$iLimit,
-                                                $iLimit);
-                                                
-        $this->setLayout('ajax_template.php');
-        $this->setTemplate('home_list_likes.php');
-                                                
-        $this->view->assign('aPostList',    $aLikes);
-        $this->view->assign('iPage',        $iPage);
-        $this->view->assign('bAllLoaded',   ($iPage+1)*$iLimit >= $iCnt);
-        $this->view->assign('sViewType', isset($_COOKIE['vt'])?($_COOKIE['vt']=='list' ? 'list':'thumb'):'thumb');
+        $this->setTitle('Личный кабинет');
     }
     
     private function _save(){
