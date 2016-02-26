@@ -7,7 +7,10 @@
         <form id="main_form" action="<?=$_SERVER['REQUEST_URI']?>" method="post">
             <div class="form-group">
                 <label for="name">Имя</label>
-                <input type="text" class="form-control" required="required" id="name" name="name" placeholder="Имя">
+                <div class="input-group">
+                    <div class="input-group-addon"><i id="name_icon" class="fa fa-fw"></i></div>
+                    <input type="text" class="form-control" required="required" id="name" name="name" placeholder="Имя">
+                </div>
             </div>
             <div class="form-group">
                 <label for="title">Заголовок</label>
@@ -78,6 +81,33 @@
             $('#main_form').find(':input[name=id]').val(0).end()[0].reset();
             $('#main_form_panel').removeClass('hidden');
         });
+        
+        var iSmphr   = 0;
+        $('#name').on('input change', function(e){
+            var sVal    = $(this).val();
+            
+            if (sVal){
+                iSmphr++;
+                setTimeout(function(){
+                    iSmphr--;
+                    if (iSmphr > 0) return;
+
+                    $('#name_icon').attr('class', 'fa fa-fw fa-spinner fa-spin');
+                    $.get('articles/ajax', {
+                        'isUnique': sVal
+                    }, function(data){
+                        if (data){
+                            $('#name_icon').attr('class', 'fa fa-fw fa-check');
+                        } else {
+                            $('#name_icon').attr('class', 'fa fa-fw fa-times');
+                        }
+                        iSmphr  = 0;
+                    });
+                }, 500);
+            } else {
+                $('#name_icon').attr('class', 'fa fa-fw fa-times');
+            }
+        })
         
         $('#list').on('click', '.b-edit', function(e){
             e.preventDefault();

@@ -55,6 +55,12 @@ class Admin_Articles extends Admin {
         
         $this->setLayout('ajax_layout_json.php');
         
+        if (isset($_GET['isUnique'])){
+            $iCell  = $this->db->selectCell("SELECT COUNT(*) FROM ?_articles WHERE name = ?;", $_GET['isUnique']);
+            $this->view->assign('sRequest', ($iCell == 0));
+            return;
+        }
+
         if (isset($_GET['id'])){
             $aData  = $this->db->selectRow("SELECT * FROM ?_articles WHERE id = ?d LIMIT 1;", $_GET['id']);
             $this->view->assign('sRequest', $aData);
