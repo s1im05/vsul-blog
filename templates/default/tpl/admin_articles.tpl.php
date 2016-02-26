@@ -37,14 +37,12 @@
     </div>
 </div>
 
-
-
 <? if ($aData) :?>
     <table class="table table-striped" id="list">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Имя</th>
+                <th class="hidden-xs">Имя</th>
                 <th>Заголовок</th>
                 <th>Действия</th>
             </tr>
@@ -53,9 +51,9 @@
         <? foreach ($aData as $aPost) :?>
             <tr>
                 <td><?=$aPost['id']?></td>
-                <td><?=$aPost['name']?></td>
+                <td class="hidden-xs"><?=$aPost['name']?></td>
                 <td><?=$aPost['title']?></td>
-                <td>
+                <td class="h-nowrap">
                     <a data-id="<?=$aPost['id']?>" class="btn btn-warning b-edit"><i class="fa fa-edit"></i></a>
                     <a data-id="<?=$aPost['id']?>" class="btn btn-danger b-delete"><i class="fa fa-trash"></i></a>
                 </td>
@@ -64,6 +62,25 @@
         </tbody>
     </table>
 <? endif; ?>
+
+
+<div id="editor_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Редактор текста</h4>
+            </div>
+            <div class="modal-body">
+                <div id="editor"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Сохранить</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script type="text/javascript">
@@ -80,6 +97,9 @@
         $('#add').on('click', function(e){
             e.preventDefault();
             $('#main_form').find(':input[name=id]').val(0).end()[0].reset();
+            $('textarea', '#main_form_panel').each(function(){
+                $(this).trumbowyg('empty');
+            });
             $('#main_form_panel').removeClass('hidden');
         });
         
@@ -127,6 +147,9 @@
                         var name = $(this).attr('name');
                         if (data[name] !== u){
                             $(this).val(data[name]);
+                            if ($(this).hasClass('trumbowyg-textarea')){
+                                $(this).trumbowyg('html', data[name]);
+                            }
                         }
                     });
                     $('#main_form_panel').removeClass('hidden');
@@ -150,9 +173,11 @@
             }
         });
         
+        $('textarea', '#main_form_panel').trumbowyg({
+            lang: 'ru'
+        });
+        
         $('#main_form_panel').on('click', '.b-cancel', function(e){
-            e.preventDefault();
-            $('#main_form')[0].reset();
             $('#main_form_panel').addClass('hidden');
         });
     });

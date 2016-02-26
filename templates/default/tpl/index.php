@@ -31,36 +31,37 @@
                             &nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li role="presentation"><a href="/home">Home</a></li>
-                            <li role="presentation"><a href="/logout">Logout</a></li>
+                            <li role="presentation"><a href="/home">Личный кабинет</a></li>
+                            <li role="presentation"><a href="/logout">Выход</a></li>
                         </ul>
                     <? else :?>
-                        <a class="btn btn-default b-navtop__button b-sign loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Sign In</a>
+                        <a class="btn btn-default b-navtop__button b-sign loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Войти</a>
                     <? endif;?>
                     
-                    <a class="btn btn-default b-navtop__button active" href="/">Main</a>
-                    <a class="btn btn-default b-navtop__button" href="#">ES5</a>
+                    <a class="btn btn-default b-navtop__button active" href="/">Блог</a>
+                    <?/*<a class="btn btn-default b-navtop__button" href="#">ES5</a>
                     <a class="btn btn-default b-navtop__button" href="#">ES6</a>
                     <a class="btn btn-default b-navtop__button" href="#">FW</a>
                     <a class="btn btn-default b-navtop__button" href="#">About</a>
+                    */?>
                 </div>
                 <div class="col-sm-4">
                     <div class="pull-left dropdown visible-xs">
                         <a class="btn btn-default dropdown-toggle b-navbtn" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
                         <ul class="dropdown-menu">
-                            <li role="presentation" class="active"><a href="/">Main</a></li>
+                            <li role="presentation" class="active"><a href="/">Блог</a></li>
                             <li role="separator" class="divider"></li>
                             <? if ($bIsLogged) :?>
-                                <li role="presentation"><a href="/home"><?=$aUser['nickname']?></a></li>
-                                <li role="presentation"><a href="/logout">Logout</a></li>
+                                <li role="presentation"><a href="/home">Личный кабинет</a></li>
+                                <li role="presentation"><a href="/logout">Выход</a></li>
                             <? else :?>
-                                <li role="presentation"><a class="loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Sign In</a></li>
+                                <li role="presentation"><a class="loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Войти</a></li>
                             <? endif;?>
                         </ul>
                     </div>
                     <form class="form-inline b-headerform text-right" id="search">
                         <div class="input-group">
-                            <input type="text" placeholder="Search" id="search_query" class="form-control"> 
+                            <input type="text" placeholder="Поиск" id="search_query" class="form-control"> 
                             <span class="input-group-addon btn b-search__btn" id="search_btn"><i class="fa fa-search"></i></span>
                         </div>
                     </form>
@@ -79,10 +80,10 @@
             <aside class="col-sm-4 col-lg-3 b-center">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Block Title
+                        Всякое разное
                     </div>
                     <div class="panel-body">
-                        <a href="/rss"><i class="fa fa-fw fa-rss"></i> RSS-feed</a>
+                        <a href="/rss"><i class="fa fa-fw fa-rss"></i> RSS-лента</a>
                     </div>
                 </div>
             </aside>

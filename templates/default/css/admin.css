@@ -34,3 +34,6 @@ body {
 .sortable > .panel-heading {
     cursor: move;
 }
+.h-nowrap {
+    white-space: nowrap;
+}

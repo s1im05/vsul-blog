@@ -8,6 +8,7 @@
     
     <link rel="stylesheet" type="text/css" href="<?=$path?>/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="<?=$path?>/css/jqui/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?=$path?>/css/trumbowyg/trumbowyg.min.css" />
     <link rel="stylesheet" type="text/css" href="<?=$path?>/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="<?=$path?>/css/admin.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -15,6 +16,8 @@
     <script type="text/javascript" src="<?=$path?>/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?=$path?>/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?=$path?>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?=$path?>/js/trumbowyg/trumbowyg.min.js"></script>
+    <script type="text/javascript" src="<?=$path?>/js/trumbowyg/langs/ru.min.js"></script>
 </head>
 <body class="b-adminbody">
     <div class="container">
