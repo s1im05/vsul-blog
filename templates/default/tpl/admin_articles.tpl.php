@@ -8,9 +8,10 @@
             <div class="form-group">
                 <label for="name">Имя</label>
                 <div class="input-group">
-                    <div class="input-group-addon"><i id="name_icon" class="fa fa-fw"></i></div>
                     <input type="text" class="form-control" required="required" id="name" name="name" placeholder="Имя">
+                    <div class="input-group-addon"><i id="name_icon" class="fa fa-fw"></i></div>
                 </div>
+                <p class="help-block text-muted">Только цифры, латинские буквы в нижнем регистре, символы "-" и "_"</p>
             </div>
             <div class="form-group">
                 <label for="title">Заголовок</label>
@@ -107,7 +108,12 @@
             } else {
                 $('#name_icon').attr('class', 'fa fa-fw fa-times');
             }
-        })
+        }).on('keypress', function(e){
+            var re  = new RegExp("[a-z0-9_-]");
+            if (!re.test(e.key)){
+                e.preventDefault();
+            }
+        });
         
         $('#list').on('click', '.b-edit', function(e){
             e.preventDefault();
@@ -124,6 +130,7 @@
                         }
                     });
                     $('#main_form_panel').removeClass('hidden');
+                    w.location.hash = '#main_form_panel';
                     iUnblock(icon);
                 });
         }).on('click', '.b-delete', function(e){
