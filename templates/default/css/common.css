@@ -14,6 +14,7 @@ a:hover, a:focus {
 /* blocks */
 .b-errorbody {
     padding: 100px 0;
+    background: #eee;
 }
 
 .b-navbtn {

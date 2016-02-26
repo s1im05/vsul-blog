@@ -5,7 +5,7 @@
         <? if ($bList) :?>
             <p><?=$aPost['text_short']?></p>
             <p>
-                <a class="btn btn-success btn-md" href="/<?=$aPost['name']?>"><?=$aPost['text_goto']?$aPost['text_goto']:'Далее'?></a>
+                <a class="btn btn-success btn-md" href="/a/<?=$aPost['name']?>"><?=$aPost['text_goto']?$aPost['text_goto']:'Далее'?></a>
             </p>
         <? else :?>
             <?=$aPost['text']?>
