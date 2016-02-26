@@ -3,6 +3,7 @@ namespace SSCE\Controllers;
 
 class Home extends Base {
     
+    protected $_sTitle      = 'Личный кабинет';
     protected $_sTemplate   = 'home.tpl.php';
     protected $_sLayout     = 'index.php';
     
@@ -15,6 +16,7 @@ class Home extends Base {
         
         if (isset($_POST['save'])){
             $this->_save();
+            $this->view->assign('aUser', $oUser->data);
         }
         
         if (isset($_POST['view_type'])){
@@ -24,8 +26,6 @@ class Home extends Base {
         } else {
             $this->view->assign('sViewType', isset($_COOKIE['vt'])?($_COOKIE['vt']=='list' ? 'list':'thumb'):'thumb');
         }
-        
-        $this->setTitle('Личный кабинет');
     }
     
     private function _save(){
