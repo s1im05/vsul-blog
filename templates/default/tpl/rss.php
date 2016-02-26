@@ -24,11 +24,11 @@
         <?foreach ($aRss['items'] as $aItem) :?>
         <item>
             <title><![CDATA[<?=$aItem['title']?>]]></title>
-            <link>http://<?=$_SERVER['HTTP_HOST']?>/post/<?=$aItem['id']?></link>
-            <guid>http://<?=$_SERVER['HTTP_HOST']?>/post/<?=$aItem['id']?></guid>
+            <link>http://<?=$_SERVER['HTTP_HOST']?>/a/<?=$aItem['name']?></link>
+            <guid>http://<?=$_SERVER['HTTP_HOST']?>/a/<?=$aItem['name']?></guid>
             <description><![CDATA[
                 <?=$aItem['description']?> 
-                <p><a href="http://<?=$_SERVER['HTTP_HOST']?>/post/<?=$aItem['id']?>">Смотреть целиком</a></p>
+                <p><a href="http://<?=$_SERVER['HTTP_HOST']?>/a/<?=$aItem['name']?>">Смотреть целиком</a></p>
                 <? if ($aItem['tags']) :?>
                 <div class="b-post__tags h-clear">
                     <? foreach ($aItem['tags'] as $aTag) :?>
@@ -39,7 +39,7 @@
             ]]></description>
             <content:encoded><![CDATA[
                 <?=$aItem['description']?> 
-                <p><a href="http://<?=$_SERVER['HTTP_HOST']?>/post/<?=$aItem['id']?>">Смотреть целиком</a></p>
+                <p><a href="http://<?=$_SERVER['HTTP_HOST']?>/a/<?=$aItem['name']?>">Смотреть целиком</a></p>
                 <? if ($aItem['tags']) :?>
                 <div class="b-post__tags h-clear">
                     <? foreach ($aItem['tags'] as $aTag) :?>
@@ -49,7 +49,7 @@
                 <? endif;?>
             ]]></content:encoded>
             <pubDate><?=date('r', strtotime($aItem['date']))?></pubDate>
-            <source url="http://<?=$_SERVER['HTTP_HOST']?>/post/<?=$aItem['id']?>"><?=$aRss['title']?></source>
+            <source url="http://<?=$_SERVER['HTTP_HOST']?>/a/<?=$aItem['name']?>"><?=$aRss['title']?></source>
         </item>
         <? endforeach;?>
     </channel>

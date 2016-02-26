@@ -12,6 +12,7 @@ class Rss extends Base {
             'items'         => $this->db->select("SELECT
                                                             id,
                                                             title,
+                                                            name,
                                                             text_short AS description,
                                                             date_c AS date
                                                         FROM
