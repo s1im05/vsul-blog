@@ -32,11 +32,9 @@ class Request {
                 if (isset($oVal->header)) {
                     header($oVal->header);
                 }
-                break;
+                return;
             }
         }
-        
-        
     }
     
     public function getPath() {

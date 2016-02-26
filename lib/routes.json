@@ -40,7 +40,12 @@
             "controller": "admin_articles",
             "action": "articles"
         },{
-            "path": "\\/([a-z_-]{3,})",
+            "path": "\\/adm_panel\\/articles\\/ajax",
+            "controller": "admin_articles",
+            "action": "ajax",
+            "header": "Content-type: application/json; charset=UTF-8"
+        },{
+            "path": "\\/a\\/([0-9a-z_-]{3,})",
             "controller": "blog",
             "action": "byName",
             "params": ["name"]

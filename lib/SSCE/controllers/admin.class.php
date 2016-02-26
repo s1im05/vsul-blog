@@ -7,7 +7,10 @@ class Admin extends Base {
     protected $_sTemplate   = 'admin_home.php';
     
     public function indexAction(){
-        
+        $this->checkAdminLogin();
+    }
+    
+    public function checkAdminLogin(){
         if (isset($_POST['login']) && isset($_POST['pass'])){
             sleep(2);
             $this->_login($_POST['login'], $_POST['pass']);
