@@ -8,6 +8,42 @@ class Admin_Articles extends Admin {
     public function articlesAction(){
         parent::checkAdminLogin();
         
+        if (isset($_POST['id']) && $_POST['id'] > 0){ // edit
+            $this->db->query("UPDATE LOW_PRIORITY
+                    ?_articles
+                SET
+                    name    = ?,
+                    title   = ?,
+                    text    = ?,
+                    text_short  = ?,
+                    text_goto   = ?
+                WHERE
+                    id  = ?d
+                LIMIT 1;",
+                trim($_POST['name']),
+                trim($_POST['title']),
+                trim($_POST['text']),
+                trim($_POST['text_short']),
+                trim($_POST['text_goto']),
+                $_POST['id']);
+            
+        } elseif (isset($_POST['id']) && $_POST['id'] == 0){ // add
+            $this->db->query("INSERT INTO
+                    ?_articles
+                SET
+                    name    = ?,
+                    title   = ?,
+                    text    = ?,
+                    text_short  = ?,
+                    text_goto   = ?;",
+                trim($_POST['name']),
+                trim($_POST['title']),
+                trim($_POST['text']),
+                trim($_POST['text_short']),
+                trim($_POST['text_goto']));
+        }
+        
+        
         $aData  = $this->db->select("SELECT * FROM ?_articles ORDER BY id DESC;");
         
         $this->view->assign('aData', $aData);
