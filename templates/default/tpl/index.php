@@ -31,14 +31,14 @@
                             &nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li role="presentation"><a href="/home">Личный кабинет</a></li>
+                            <li role="presentation" <?=$sMenuActive=='home'?'class="active"':''?>><a href="/home">Личный кабинет</a></li>
                             <li role="presentation"><a href="/logout">Выход</a></li>
                         </ul>
                     <? else :?>
                         <a class="btn btn-default b-navtop__button b-sign loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Войти</a>
                     <? endif;?>
                     
-                    <a class="btn btn-default b-navtop__button active" href="/">Блог</a>
+                    <a class="btn btn-default b-navtop__button <?=$sMenuActive=='blog'?'active':''?>" href="/">Блог</a>
                     <?/*<a class="btn btn-default b-navtop__button" href="#">ES5</a>
                     <a class="btn btn-default b-navtop__button" href="#">ES6</a>
                     <a class="btn btn-default b-navtop__button" href="#">FW</a>
@@ -49,10 +49,10 @@
                     <div class="pull-left dropdown visible-xs">
                         <a class="btn btn-default dropdown-toggle b-navbtn" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
                         <ul class="dropdown-menu">
-                            <li role="presentation" class="active"><a href="/">Блог</a></li>
+                            <li role="presentation" <?=$sMenuActive=='blog'?'class="active"':''?>><a href="/">Блог</a></li>
                             <li role="separator" class="divider"></li>
                             <? if ($bIsLogged) :?>
-                                <li role="presentation"><a href="/home">Личный кабинет</a></li>
+                                <li role="presentation" <?=$sMenuActive=='home'?'class="active"':''?>><a href="/home">Личный кабинет</a></li>
                                 <li role="presentation"><a href="/logout">Выход</a></li>
                             <? else :?>
                                 <li role="presentation"><a class="loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Войти</a></li>

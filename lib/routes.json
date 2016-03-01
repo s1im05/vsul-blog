@@ -10,6 +10,11 @@
             "controller": "blog",
             "action": "all"
         },{
+            "path": "\\/page\\/(\\d+)",
+            "controller": "blog",
+            "action": "all",
+            "params": ["page"]
+        },{
             "path": "\\/home",
             "controller": "home",
             "action": "index"

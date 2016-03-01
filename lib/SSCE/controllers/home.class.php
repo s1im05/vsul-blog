@@ -19,13 +19,7 @@ class Home extends Base {
             $this->view->assign('aUser', $oUser->data);
         }
         
-        if (isset($_POST['view_type'])){
-            $sType  = $_POST['view_type'] == 'list' ? 'list':'thumb';
-            setcookie('vt', $sType, strtotime('+30 days'), '/', '', false, true);
-            $this->view->assign('sViewType', $sType);
-        } else {
-            $this->view->assign('sViewType', isset($_COOKIE['vt'])?($_COOKIE['vt']=='list' ? 'list':'thumb'):'thumb');
-        }
+        $this->view->assign('sMenuActive', 'home');
     }
     
     private function _save(){
