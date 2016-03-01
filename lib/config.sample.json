@@ -1,7 +1,7 @@
 {
     "project": {
-        "title":        "My Project",
-        "description":  "Enter something useful here",
+        "title":        "My Blog",
+        "description":  "Some project description",
         "version":      "0.1",
         "locale":       "ru_RU.UTF-8",
         "postsppage":   "20",
