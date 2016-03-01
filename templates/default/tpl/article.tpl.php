@@ -11,4 +11,8 @@
             <?=$aPost['text']?>
         <? endif;?>
     </article>
+    
+    <? if (!$bList) :?>
+        <? include 'comments.tpl.php';?>
+    <? endif;?>
 <? endif; ?>

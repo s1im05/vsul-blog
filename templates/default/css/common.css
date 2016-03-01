@@ -56,6 +56,10 @@ a:hover, a:focus {
 .b-article__title {
     margin-top: 0;
 }
+.b-avatar {
+    max-width: 50px;
+    max-height: 100px;
+}
 
 
 /* helpers */
