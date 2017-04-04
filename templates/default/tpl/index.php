@@ -5,94 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VVV<?=$title ? ' &ndash; '.$title : ''?></title>
-    
-    <link rel="stylesheet" type="text/css" href="<?=$path?>/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?=$path?>/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?=$path?>/css/common.css?000" />
+	
+	<link href="/dist/styles.css" rel="stylesheet">	
     
     <link href="<?=$path?>/img/favicon.ico" type="image/x-icon" rel="icon" />
     <link href="<?=$path?>/img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
     
-    <script type="text/javascript" src="<?=$path?>/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?=$path?>/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?=$path?>/js/common.js?000"></script>
-    
+    <script type="text/javascript" src="/dist/bundle.js"></script>
     <script type="text/javascript" src="//loginza.ru/js/widget.js"></script>
-    <script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
 </head>
 <body>
+<nav class="c-nav">
     <div class="container">
-        <nav class="b-navtop">
-            <div class="row">
-                <div class="col-sm-8 dropdown hidden-xs">
-                    <? if ($bIsLogged) :?>
-                        <a class="btn btn-sm dropdown-toggle btn-default" data-toggle="dropdown">
-                            <img src="<?=$aUser['photo']?>" class="b-avatar-xs">
-                            &nbsp;<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" <?=$sMenuActive=='home'?'class="active"':''?>><a href="/home">Личный кабинет</a></li>
-                            <li role="presentation"><a href="/logout">Выход</a></li>
-                        </ul>
-                    <? else :?>
-                        <a class="btn btn-default b-navtop__button b-sign loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Войти</a>
-                    <? endif;?>
-                    
-                    <a class="btn btn-default b-navtop__button <?=$sMenuActive=='blog'?'active':''?>" href="/">Блог</a>
-                    <?/*<a class="btn btn-default b-navtop__button" href="#">ES5</a>
-                    <a class="btn btn-default b-navtop__button" href="#">ES6</a>
-                    <a class="btn btn-default b-navtop__button" href="#">FW</a>
-                    <a class="btn btn-default b-navtop__button" href="#">About</a>
-                    */?>
-                </div>
-                <div class="col-sm-4">
-                    <div class="pull-left dropdown visible-xs">
-                        <a class="btn btn-default dropdown-toggle b-navbtn" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" <?=$sMenuActive=='blog'?'class="active"':''?>><a href="/">Блог</a></li>
-                            <li role="separator" class="divider"></li>
-                            <? if ($bIsLogged) :?>
-                                <li role="presentation" <?=$sMenuActive=='home'?'class="active"':''?>><a href="/home">Личный кабинет</a></li>
-                                <li role="presentation"><a href="/logout">Выход</a></li>
-                            <? else :?>
-                                <li role="presentation"><a class="loginza" href="http://loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru">Войти</a></li>
-                            <? endif;?>
-                        </ul>
-                    </div>
-                    <form class="form-inline b-headerform text-right" id="search">
-                        <div class="input-group">
-                            <input type="text" placeholder="Поиск" id="search_query" class="form-control"> 
-                            <span class="input-group-addon btn b-search__btn" id="search_btn"><i class="fa fa-search"></i></span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <header class="jumbotron">
-            <h1>Jumbotron heading</h1>
-            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-        </header>
-        <div class="row">
-            <main class="col-sm-8 col-lg-9 b-center">
-                <? include $template;?>
-            </main>
-            <aside class="col-sm-4 col-lg-3 b-center">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Всякое разное
-                    </div>
-                    <div class="panel-body">
-                        <a href="/rss"><i class="fa fa-fw fa-rss"></i> RSS-лента</a>
-                    </div>
-                </div>
-            </aside>
-        </div>
+        <a class="c-nav__logo" href="/">VSul</a>
+
+		<span class="hidden-xs">
+			<a class="c-nav__link" href="/work"><i class="fa fa-desktop"></i>Работа</a>
+			<a class="c-nav__link" href="/games"><i class="fa fa-gamepad"></i>Игры</a>
+			<a class="c-nav__link" href="/travel"><i class="fa fa-plane"></i>Путешествия</a>
+
+			<span class="c-nav__right">
+				<a class="c-nav__link"><i class="fa fa-user-circle"></i></a>
+			</span>
+			<span class="c-nav__search pull-right">
+				<input type="text" class="form-control pull-right" placeholder="Поиск...">
+			</span>			
+		</span>
+		<div class="visible-xs c-nav-xs">
+			<input type="text" class="form-control" placeholder="Поиск...">
+		</div>
+		<button class="btn btn-default pull-right visible-xs" id="navBtn">
+			<i class="fa fa-bars"></i>
+		</button>
     </div>
-    <footer class="b-footer">
-        <div class="container">
-            2016 &copy; VVV
-        </div>
-    </footer>
+	
+	<ul class="dropdown-menu c-nav__menu-xs" id="navMenu">
+		<li><a href="/work"><i class="fa fa-desktop"></i>Работа</a></li>
+		<li><a href="/games"><i class="fa fa-gamepad"></i>Игры</a></li>
+		<li><a href="/travel"><i class="fa fa-plane"></i>Путешествия</a></li>
+		<li class="divider"></li>
+		<li><a><i class="fa fa-user-circle"></i>Войти</a></li>
+	</ul>
+</nav>
+
+<div class="c-jumbotron jumbotron" id="jumbo">
+    <div class="container"></div>
+</div>
+
+<main class="c-main">
+    <div class="c-main__container container">
+        <? include $template;?>
+    </div>
+</main>
+
+<footer class="c-footer">
+    <div class="container">
+        <hr>
+        <p>Copyright &copy; 2017</p>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -1,18 +1,28 @@
 <? if ($aPost) :?>
-    <article class="b-article">
-        <h2 class="b-article__title"><?=$aPost['title']?></h2>
-        <p class="text-muted"><i class="fa fa-calendar"></i> <?=SSCE\H\date2ru($aPost['date_c'])?></p>
+
+<article class="c-card">
+    <div class="c-card__head">
+        <h2><?=$aPost['title']?></h2>
+		<button class="btn btn-link c-post__likebtn"><i class="fa fa-heart-o"></i></button>
+		<p class="text-muted"><i class="fa fa-calendar"></i> <?=SSCE\H\date2ru($aPost['date_c'])?></p>
+    </div>
+    <hr>
+    <div class="c-card__body">
         <? if ($bList) :?>
             <p><?=$aPost['text_short']?></p>
             <p>
-                <a class="btn btn-success btn-md" href="/a/<?=$aPost['name']?>"><?=$aPost['text_goto']?$aPost['text_goto']:'Далее'?></a>
+                <a class="btn btn-primary btn-md" href="/a/<?=$aPost['name']?>"><?=$aPost['text_goto']?$aPost['text_goto']:'Далее'?></a>
             </p>
         <? else :?>
             <?=$aPost['text']?>
         <? endif;?>
-    </article>
+    </div>
     
-    <? if (!$bList) :?>
+	<? if (!$bList) :?>
+	<hr>
+	<div class="c-card__footer">
         <? include 'comments.tpl.php';?>
+	</div>
     <? endif;?>
+</article>
 <? endif; ?>
