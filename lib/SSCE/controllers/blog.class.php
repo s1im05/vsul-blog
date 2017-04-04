@@ -5,17 +5,36 @@ class Blog extends Base {
     
     protected $_sTemplate   = 'blog.tpl.php';
     
-    public function allAction($iPage = 1){
-        $aData  = $this->db->selectPage($iTotal, "SELECT * FROM ?_articles ORDER BY date_c DESC LIMIT ?d, ?d;", ($iPage-1)*$this->config->project->postsppage, $this->config->project->postsppage);
+    public function allAction($sPageUrl, $iPage){
+		if (!$iPage) {
+			$iPage = 1;
+		}
+		$iPPP = $this->config->project->postsppage;
+        $aData  = $this->db->selectPage($iTotal, "SELECT * FROM ?_articles ORDER BY date_c DESC LIMIT ?d, ?d;", ((int)$iPage - 1) * $iPPP, $iPPP);
         if (empty($aData)){
             $this->request->go404();
-        }
-        
+        }	
         
         $this->view->assign('aData', $aData);
-        $this->view->assign('sMenuActive', 'blog');
+        $this->view->assign('sMenuActive', 'all');
         $this->view->assign('iPageActive', $iPage);
-        $this->view->assign('iPagesCount', (int)ceil($iTotal/$this->config->project->postsppage));
+        $this->view->assign('iPagesCount', (int)ceil($iTotal / $iPPP));
+    }
+	
+    public function chapterAction($sChapter, $sPageUrl, $iPage){
+		if (!$iPage) {
+			$iPage = 1;
+		}
+		$iPPP = $this->config->project->postsppage;
+        $aData  = $this->db->selectPage($iTotal, "SELECT * FROM ?_articles WHERE chapter = ? ORDER BY date_c DESC LIMIT ?d, ?d;", $sChapter, ((int)$iPage - 1) * $iPPP, $iPPP);
+        if (empty($aData)){
+            $this->request->go404();
+        }	
+        
+        $this->view->assign('aData', $aData);
+        $this->view->assign('sMenuActive', $sChapter);
+        $this->view->assign('iPageActive', $iPage);
+        $this->view->assign('iPagesCount', (int)ceil($iTotal / $iPPP));
     }
     
     public function byNameAction($sName){

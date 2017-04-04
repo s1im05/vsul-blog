@@ -18,7 +18,7 @@
 			el.width = size * 2;
 			el.height = size;
 			
-			ctx.fillStyle = "rgba(256, 256, 256, .3)";
+			ctx.fillStyle = "rgba(256, 256, 256, .2)";
 			ctx.font = "8em FontAwesome";
 			ctx.fillText(icons[0], 0, offsetY);
 			ctx.fillText(icons[1], size, offsetY);
@@ -31,8 +31,29 @@
 	$(() => { // on document ready
 		$('#navBtn').on('click', (e) => {
 			$('#navMenu').toggle();
+		})
+		.on('blur', (e) => {
+			w.setTimeout(() => {
+				$('#navMenu').hide();
+			}, 100);
 		});
 		
-		const jumbo = $('#jumbo').css('background-image', 'url(' + genereateTexture(textureSize, icons.travel) + ')');
+		let iconSet;
+		switch ($('body').data('chapter')) {
+			case 'work':
+				iconSet = icons.work;
+				break;
+			case 'travel':
+				iconSet = icons.travel;
+				break;
+			case 'games':
+				iconSet = icons.games;
+				break;
+			default:
+				iconSet = [];
+				iconSet.push(...icons.work, ...icons.travel, ...icons.games);
+		}
+
+		$('#jumbo').css('background-image', 'url(' + genereateTexture(textureSize, iconSet) + ')');
 	});	
 })(jQuery, window);

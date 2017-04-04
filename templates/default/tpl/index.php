@@ -14,15 +14,15 @@
     <script type="text/javascript" src="/dist/bundle.js"></script>
     <script type="text/javascript" src="//loginza.ru/js/widget.js"></script>
 </head>
-<body>
+<body data-chapter="<?=$sMenuActive?>">
 <nav class="c-nav">
     <div class="container">
-        <a class="c-nav__logo" href="/">VSul</a>
+        <a class="c-nav__logo <?=$sMenuActive === 'all' ? 'c-nav__logo-active' : ''?>" href="/">VSul</a>
 
 		<span class="hidden-xs">
-			<a class="c-nav__link" href="/work"><i class="fa fa-desktop"></i>Работа</a>
-			<a class="c-nav__link" href="/games"><i class="fa fa-gamepad"></i>Игры</a>
-			<a class="c-nav__link" href="/travel"><i class="fa fa-plane"></i>Путешествия</a>
+			<a class="c-nav__link <?=$sMenuActive === 'work' ? 'c-nav__link-active' : ''?>" href="/work"><i class="fa fa-desktop"></i>Работа</a>
+			<a class="c-nav__link <?=$sMenuActive === 'games' ? 'c-nav__link-active' : ''?>" href="/games"><i class="fa fa-gamepad"></i>Игры</a>
+			<a class="c-nav__link <?=$sMenuActive === 'travel' ? 'c-nav__link-active' : ''?>" href="/travel"><i class="fa fa-plane"></i>Путешествия</a>
 
 			<span class="c-nav__right">
 				<a class="c-nav__link"><i class="fa fa-user-circle"></i></a>
@@ -61,7 +61,12 @@
 <footer class="c-footer">
     <div class="container">
         <hr>
-        <p>Copyright &copy; 2017</p>
+        <p>
+			VSul &copy; 2017
+			<span class="pull-right">
+				<a href="/rss"><i class="fa fa-rss-square"></i></a>
+			</span>
+		</p>
     </div>
 </footer>
 
