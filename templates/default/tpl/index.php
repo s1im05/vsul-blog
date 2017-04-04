@@ -40,9 +40,9 @@
     </div>
 	
 	<ul class="dropdown-menu c-nav__menu-xs" id="navMenu">
-		<li><a href="/work"><i class="fa fa-desktop"></i>Работа</a></li>
-		<li><a href="/games"><i class="fa fa-gamepad"></i>Игры</a></li>
-		<li><a href="/travel"><i class="fa fa-plane"></i>Путешествия</a></li>
+		<li <?=$sMenuActive === 'work' ? 'class="active"' : ''?>><a href="/work"><i class="fa fa-desktop"></i>Работа</a></li>
+		<li <?=$sMenuActive === 'games' ? 'class="active"' : ''?>><a href="/games"><i class="fa fa-gamepad"></i>Игры</a></li>
+		<li <?=$sMenuActive === 'travel' ? 'class="active"' : ''?>><a href="/travel"><i class="fa fa-plane"></i>Путешествия</a></li>
 		<li class="divider"></li>
 		<li><a><i class="fa fa-user-circle"></i>Войти</a></li>
 	</ul>
