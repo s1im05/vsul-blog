@@ -14,11 +14,12 @@ export const adminArticle = (w, $, u) => {
 				$(this).trumbowyg('empty');
 			});
 			$('#main_form_panel').removeClass('hidden');
+			$('#name_icon').attr('class', 'fa fa-fw');
 			w.location.hash = '#main_form_panel';
 		});
 		
 		var iSmphr   = 0;
-		$('#name').on('input change', function(e){
+		$('#name').on('input change unique_name_check', function(e){
 			var sVal    = $(this).val();
 			
 			if (sVal){
@@ -39,7 +40,7 @@ export const adminArticle = (w, $, u) => {
 						}
 						iSmphr  = 0;
 					});
-				}, 500);
+				}, 1000);
 			} else {
 				$('#name_icon').attr('class', 'fa fa-fw fa-times');
 			}
@@ -68,6 +69,7 @@ export const adminArticle = (w, $, u) => {
 						}
 					});
 					$('#main_form_panel').removeClass('hidden');
+					$('#name').trigger('unique_name_check');
 					w.location.hash = '#main_form_panel';
 					iUnblock(icon);
 				});
