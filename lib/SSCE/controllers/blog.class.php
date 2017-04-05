@@ -3,47 +3,40 @@ namespace SSCE\Controllers;
 
 class Blog extends Base {
     
-    protected $_sTemplate   = 'blog.tpl.php';
+    protected $_sTemplate  = 'blog.tpl.php';
     
     public function allAction($sPageUrl, $iPage){
-		if (!$iPage) {
-			$iPage = 1;
-		}
-		$iPPP = $this->config->project->postsppage;
-        $aData  = $this->db->selectPage($iTotal, "SELECT * FROM ?_articles ORDER BY date_c DESC LIMIT ?d, ?d;", ((int)$iPage - 1) * $iPPP, $iPPP);
-        if (empty($aData)){
-            $this->request->go404();
-        }	
-        
-        $this->view->assign('aData', $aData);
+		
+		$oArticleList = new \SSCE\Models\ArticleList($this->options);
+		$aRes = $oArticleList->getPage((int)$iPage);
+		
+        $this->view->assign('aData', $aRes['page']);
         $this->view->assign('sMenuActive', 'all');
-        $this->view->assign('iPageActive', $iPage);
-        $this->view->assign('iPagesCount', (int)ceil($iTotal / $iPPP));
+        $this->view->assign('iPageActive', (int)$iPage);
+        $this->view->assign('iPagesCount', $aRes['total']);
     }
 	
     public function chapterAction($sChapter, $sPageUrl, $iPage){
-		if (!$iPage) {
-			$iPage = 1;
-		}
-		$iPPP = $this->config->project->postsppage;
-        $aData  = $this->db->selectPage($iTotal, "SELECT * FROM ?_articles WHERE chapter = ? ORDER BY date_c DESC LIMIT ?d, ?d;", $sChapter, ((int)$iPage - 1) * $iPPP, $iPPP);
-        if (empty($aData)){
-            $this->request->go404();
-        }	
-        
-        $this->view->assign('aData', $aData);
+		
+		$oArticleList = new \SSCE\Models\ArticleList($this->options);
+		$aRes = $oArticleList->getChapterPage($sChapter, (int)$iPage);
+		
+        $this->view->assign('aData', $aRes['page']);
         $this->view->assign('sMenuActive', $sChapter);
         $this->view->assign('iPageActive', $iPage);
-        $this->view->assign('iPagesCount', (int)ceil($iTotal / $iPPP));
+        $this->view->assign('iPagesCount', $aRes['total']);
     }
     
     public function byNameAction($sName){
-        if ($aPost  = $this->db->selectRow("SELECT * FROM ?_articles WHERE name = ? LIMIT 1;", $sName)){
+		$oArticle = new \SSCE\Models\Article($this->options);
+        if ($aPost  = $oArticle->getByName($sName)){
             
             $oUser   = new \SSCE\Models\User($this->options);
             $this->_getComments($aPost['id'], $oUser);
             
+			$this->setTitle($aPost['title']);
             $this->view->assign('aPost', $aPost);
+			$this->view->assign('sMenuActive', $aPost['chapter']);
             $this->setTemplate('article.tpl.php');
         } else {
             $this->request->go404();

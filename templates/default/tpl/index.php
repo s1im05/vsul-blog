@@ -4,14 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VVV<?=$title ? ' &ndash; '.$title : ''?></title>
+    <title>VSul<?=$title ? ' &ndash; '.$title : ''?></title>
 	
-	<link href="/dist/styles.css" rel="stylesheet">	
-    
     <link href="<?=$path?>/img/favicon.ico" type="image/x-icon" rel="icon" />
     <link href="<?=$path?>/img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-    
-    <script type="text/javascript" src="/dist/bundle.js"></script>
+	
+	<link href="/dist/main-styles.css" rel="stylesheet">	    
+    <script type="text/javascript" src="/dist/main-bundle.js"></script>
     <script type="text/javascript" src="//loginza.ru/js/widget.js"></script>
 </head>
 <body data-chapter="<?=$sMenuActive?>">

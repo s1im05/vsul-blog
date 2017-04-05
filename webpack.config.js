@@ -2,9 +2,12 @@ const webpack = require('webpack'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './templates/default/js/main.js',
+  entry: {
+	main: './templates/default/js/main.js',
+	admin: './templates/default/js/admin.js'
+  },
   output: {
-    filename: './dist/bundle.js'
+    filename: './dist/[name]-bundle.js'
   },
   module: {
     rules: [
@@ -15,11 +18,19 @@ module.exports = {
         })
       },
 	  {
-        test: /\.(svg|eot|ttf|woff|woff2)$/,
+        test: /webfont\.(svg|eot|ttf|woff|woff2)$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
 		  name: '/dist/fonts/[hash].[ext]'
+        }
+      },
+	  {
+        test: /icons\.(svg)$/,
+        loader: 'url-loader',
+        options: {
+		  limit: 1,
+		  name: '/dist/ui/[name].[ext]'
         }
       },
 	  {
@@ -47,6 +58,6 @@ module.exports = {
         jQuery: 'jquery',
         $: 'jquery'
     }),
-	new ExtractTextPlugin('./dist/styles.css'),
+	new ExtractTextPlugin('./dist/[name]-styles.css'),
   ]
 }

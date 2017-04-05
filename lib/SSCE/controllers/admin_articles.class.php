@@ -12,6 +12,7 @@ class Admin_Articles extends Admin {
             $this->db->query("UPDATE LOW_PRIORITY
                     ?_articles
                 SET
+                    chapter = ?,
                     name    = ?,
                     title   = ?,
                     text    = ?,
@@ -20,6 +21,7 @@ class Admin_Articles extends Admin {
                 WHERE
                     id  = ?d
                 LIMIT 1;",
+                trim($_POST['chapter']),
                 trim($_POST['name']),
                 trim($_POST['title']),
                 trim($_POST['text']),
@@ -31,11 +33,13 @@ class Admin_Articles extends Admin {
             $this->db->query("INSERT INTO
                     ?_articles
                 SET
+					chapter = ?,
                     name    = ?,
                     title   = ?,
                     text    = ?,
                     text_short  = ?,
                     text_goto   = ?;",
+                trim($_POST['chapter']),
                 trim($_POST['name']),
                 trim($_POST['title']),
                 trim($_POST['text']),

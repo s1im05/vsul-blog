@@ -82,6 +82,7 @@ a {
 .c-footer {
     font-size: 14px;
     color: #333;
+	background: #fff;
 }
 
 .c-card {
@@ -97,6 +98,7 @@ a {
 }
 .c-card__body {
     padding: 0 15px;
+	margin-bottom: 1em;
 }
 .c-card__footer {
     padding: 0 15px 15px 15px;
@@ -110,7 +112,11 @@ a {
 .c-post__title {
 }
 
-.b-avatar {
+.c-avatar {
     max-width: 50px;
     max-height: 100px;
+}
+.c-errorbody {
+    padding: 100px 0;
+    background: #eee;
 }

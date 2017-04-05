@@ -34,7 +34,7 @@ class Admin extends Base {
     private function _login($sLogin, $sPass){
         if ($sLogin === $this->config->project->login && md5($sPass.$this->config->project->salt) === $this->config->project->pass){
             $_SESSION['adm_auth']   = true;
-            $this->request->refresh();
+            $this->request->go('/adm_panel');
         } else {
             $this->view->assign('sError', 'Неправильный логин или пароль');
         }

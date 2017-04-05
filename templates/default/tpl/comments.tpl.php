@@ -3,8 +3,8 @@
     <? if ($aCommentList) :?>
         <? foreach ($aCommentList as $aComment) :?>
             <div class="media b-comment" id="comment_<?=$aComment['id']?>">
-                <div class="media-left">
-                    <img class="media-object b-avatar" src="<?=$aComment['photo']?$aComment['photo']:$path.'/img/user.jpg'?>">
+                <div class="media-left pull-left">
+                    <img class="media-object c-avatar" src="<?=$aComment['photo']?$aComment['photo']:$path.'/img/user.jpg'?>">
                 </div>
                 <div class="media-body <?=$aComment['id']==$iLastAdded?'bg-success':''?>">
                     <p class="media-heading"><strong><?=htmlspecialchars($aComment['nickname'])?></strong>, 
