@@ -29,12 +29,13 @@ export const adminArticle = (w, $, u) => {
 
 					$('#name_icon').attr('class', 'fa fa-fw fa-spinner fa-spin');
 					$.get('articles/ajax', {
-						'isUnique': sVal
+						'isUnique': sVal,
+						'id': $(':input[name=id]').val()
 					}, function(data){
 						if (data){
-							$('#name_icon').attr('class', 'fa fa-fw fa-check');
+							$('#name_icon').attr('class', 'fa fa-fw fa-check text-success');
 						} else {
-							$('#name_icon').attr('class', 'fa fa-fw fa-times');
+							$('#name_icon').attr('class', 'fa fa-fw fa-times text-danger');
 						}
 						iSmphr  = 0;
 					});

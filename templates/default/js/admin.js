@@ -4,6 +4,6 @@ import '../css/bootstrap.css';
 import '../css/admin.css';
 
 import 'trumbowyg/dist/trumbowyg.js';
-import './layout-admin.js';
+import './admin-layout.js';
 
 import 'trumbowyg/dist/ui/icons.svg';

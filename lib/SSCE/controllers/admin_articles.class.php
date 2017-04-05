@@ -59,8 +59,8 @@ class Admin_Articles extends Admin {
         
         $this->setLayout('ajax_layout_json.php');
         
-        if (isset($_GET['isUnique'])){
-            $iCell  = $this->db->selectCell("SELECT COUNT(*) FROM ?_articles WHERE name = ?;", $_GET['isUnique']);
+        if (isset($_GET['isUnique']) && isset($_GET['id'])){
+            $iCell  = $this->db->selectCell("SELECT COUNT(*) FROM ?_articles WHERE name = ? and id != ?d;", $_GET['isUnique'], $_GET['id']);
             $this->view->assign('sRequest', ($iCell == 0));
             return;
         }
