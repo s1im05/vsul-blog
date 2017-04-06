@@ -27,11 +27,11 @@
 				<a class="c-nav__link"><i class="fa fa-user-circle"></i></a>
 			</span>
 			<span class="c-nav__search pull-right">
-				<input type="text" class="form-control pull-right" placeholder="Поиск...">
+				<input id="search" type="text" class="form-control pull-right" placeholder="Поиск...">
 			</span>			
 		</span>
 		<div class="visible-xs c-nav-xs">
-			<input type="text" class="form-control" placeholder="Поиск...">
+			<input type="text" id="searchXs" class="form-control" placeholder="Поиск...">
 		</div>
 		<button class="btn btn-default pull-right visible-xs" id="navBtn">
 			<i class="fa fa-bars"></i>
@@ -63,11 +63,32 @@
         <p>
 			VSul &copy; 2017
 			<span class="pull-right">
+				<a id="obs"><i class="fa fa-envelope-o"></i></a>
+				&nbsp;
 				<a href="/rss"><i class="fa fa-rss-square"></i></a>
 			</span>
 		</p>
     </div>
 </footer>
+
+<div class="modal-backdrop fade in hidden" id="modalBackdrop"></div>
+<div class="modal" tabindex="-1" id="modalObs" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close modal-close"><span>&times;</span></button>
+				<h4 class="modal-title">Отправить сообщение</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body&hellip;</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">Отправить</button>
+				<button type="button" class="btn btn-default modal-close">Отмена</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

@@ -1,10 +1,10 @@
 {
     "project": {
-        "title":        "My Blog",
+        "title":        "VSul Blog",
         "description":  "Some project description",
         "version":      "0.1",
         "locale":       "ru_RU.UTF-8",
-        "postsppage":   "20",
+        "postsppage":   20,
         "login":        "admin",
         "salt":         "fsdfs$%^GREnrteRT3ABL<K*&*&*5a",
         "pass":         "83f9a83f4dc1f34ccb40ec6f1c544ef8"

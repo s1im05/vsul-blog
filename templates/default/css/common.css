@@ -6,6 +6,9 @@ body {
 a {
     cursor: pointer;
 }
+.modal {
+	overflow: hidden;
+}
 .c-nav {
     position: fixed;
     top: 0;
@@ -78,7 +81,7 @@ a {
     min-height: 300px;
     background: #3ebfd7;
 }
-
+ 
 .c-footer {
     font-size: 14px;
     color: #333;
@@ -92,13 +95,19 @@ a {
     min-height: 200px;
     margin-bottom: 30px;
 }
+.c-post img {
+	max-width: 100%;
+}
+.c-post p {
+	margin-bottom: 1em;
+}
 .c-card__head {
     padding: 0 60px 0 15px;
     position: relative;
 }
 .c-card__body {
     padding: 0 15px;
-	margin-bottom: 1em;
+	margin-bottom: 40px;
 }
 .c-card__footer {
     padding: 0 15px 15px 15px;

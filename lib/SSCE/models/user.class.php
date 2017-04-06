@@ -65,17 +65,17 @@ class User extends Base {
                                                 `photo`         = ?",
                                                 $oData->identity,
                                                 isset($oData->nickname)&&($oData->nickname!='')?$oData->nickname:(isset($oData->name->last_name)||isset($oData->name->first_name)?$oData->name->first_name.' '.$oData->name->last_name:''),
-                                                isset($oData->name->last_name)?$oData->name->last_name:'',
-                                                isset($oData->name->first_name)?$oData->name->first_name:'',
-                                                isset($oData->email)?$oData->email:'',
-                                                isset($oData->dob)?$oData->dob:'0000-00-00',
-                                                isset($oData->gender)?$oData->gender:'U',
-                                                isset($oData->web->default)?$oData->web->default:'',
-                                                isset($oData->photo)?$oData->photo:'')){
+                                                isset($oData->name->last_name) ? $oData->name->last_name : '',
+                                                isset($oData->name->first_name) ? $oData->name->first_name : '',
+                                                isset($oData->email) ? $oData->email : '',
+                                                isset($oData->dob) ? $oData->dob : '0000-00-00',
+                                                isset($oData->gender) ? $oData->gender : 'U',
+                                                isset($oData->web->default) ? $oData->web->default : '',
+                                                isset($oData->photo) ? $oData->photo : '')){
                     $_SESSION['user']   = $this->db->selectRow("SELECT * FROM ?_users WHERE identity = ? LIMIT 1;", $oData->identity);
                 }
             } else {
-                $_SESSION['user']['photo']  = isset($oData->photo)?$oData->photo:'';
+                $_SESSION['user']['photo']  = isset($oData->photo) ? $oData->photo : '';
             }
 
             $sSec   = md5(mt_rand());

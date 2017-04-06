@@ -6,7 +6,7 @@ export const adminArticle = (w, $, u) => {
 			$(el).attr('class', $(el).data('class')).parent('.btn').prop('disabled', false);
 		};
 
-	$(function(){
+	$(() => {
 		$('#add').on('click', function(e){
 			e.preventDefault();
 			$('#main_form').find(':input[name=id]').val(0).end()[0].reset();

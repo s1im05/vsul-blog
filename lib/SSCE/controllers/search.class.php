@@ -7,42 +7,23 @@ class Search extends Base {
     protected $_sLayout     = 'index.php';
 
     
-    public function searchAction($sQuery, $bByTag = false){
+    public function searchAction($sQuery, $sPage){
         $sQuery = trim($sQuery);
-        $iPage  = 0;
-        
-        $aFound = $this->_getFound($sQuery, 0, $bByTag);
-        $iLimit = (int)$this->config->project->postsppage;
+		$iPage = !$sPage ? 1 : (int)$sPage;
+		
+        $aFound = $this->_getFound($sQuery, $iPage, $bByTag);
         
         $this->view->assign('sChapter',     'all');
-        $this->view->assign('iPage',        $iPage);
         $this->view->assign('aFound',       $aFound);
         $this->view->assign('sQuery',       $sQuery);
-        $this->view->assign('bAllLoaded',   ($iPage+1)*$iLimit >= $aFound['total']);
+		$this->view->assign('iOlStart',     ($iPage - 1) * (int)$this->config->project->postsppage + 1);
+		$this->view->assign('iPageActive',  $iPage);
+		$this->view->assign('iPagesCount', 	$aFound['total']);
+		$this->view->assign('sPgPrefix', 	"/search/{$sQuery}");
         $this->view->assign('bByTag',       false);
         
         $this->setTitle('Поиск по запросу &laquo;'.htmlspecialchars($sQuery).'&raquo;');
     }
-    
-    public function searchAjaxAction($sQuery, $iPage, $bByTag = false){
-        
-        $aFound = $this->_getFound($sQuery, $iPage, $bByTag);
-        $iLimit = (int)$this->config->project->postsppage;
-
-        $this->view->assign('iPage',        $iPage);
-        $this->view->assign('aFound',       $aFound);
-        $this->view->assign('sQuery',       $sQuery);
-        $this->view->assign('bAllLoaded',   ($iPage+1)*$iLimit >= $aFound['total']);
-        $this->view->assign('bByTag',       $bByTag);
-        
-        $this->setTemplate('search_list.php');
-        $this->setLayout('ajax_template.php');
-    }
-    
-    public function searchByTagAjaxAction($sQuery, $iPage){
-        $this->searchAjaxAction($sQuery, $iPage, true);
-    }
-    
     
     public function searchByTagAction($sQuery){
         $this->searchAction($sQuery, true);
@@ -51,8 +32,9 @@ class Search extends Base {
     }
     
     
-    private function _getFound($sQuery, $iPage = 0, $bByTagOnly = false){
+    private function _getFound($sQuery, $iPage, $bByTagOnly = false){
         if (isset($sQuery)){
+			
             $sText  = substr(trim($sQuery), 0, 50);
             $aWords = array();
             if ($aTmp  = explode(' ', $sText)){
@@ -66,36 +48,26 @@ class Search extends Base {
                 $aWords[]   = $sText;
             }
             if (!empty($aWords)){
-                $iLimit = (int)$this->config->project->postsppage;
-                if ($aData  = $this->db->selectPage($iCnt, 
+                $iPPP = (int)$this->config->project->postsppage;
+                if ($aData  = $this->db->selectPage($iTotal, 
                                                     "SELECT
-                                                        p.*,
-                                                        pl.state    AS like_state,
-                                                        c.class     AS chapter_name,
-                                                        c.title     AS chapter_title
-                                                    FROM 
-                                                        ?_chapters c
-                                                    JOIN
-                                                        ?_posts p
-                                                    LEFT JOIN
-                                                        ?_posts__likes pl
-                                                    ON
-                                                        (pl.post_id  = p.id AND pl.user_id = ?d)
+                                                        a.*
+													FROM 
+                                                        ?_articles a
                                                     WHERE
-                                                        c.id    = p.chapter_id AND
-                                                        (
-                                                            p.tags LIKE '%".implode("%' OR tags LIKE '%", $aWords)."%'
-                                                            ".(!$bByTagOnly ? "OR p.title LIKE '%".implode("%' OR title LIKE '%", $aWords)."%'" : '' )."
+														(
+															a.title LIKE '%".implode("%' OR a.title LIKE '%", $aWords)."%'
+															OR
+															a.text LIKE '%".implode("%' OR a.text LIKE '%", $aWords)."%'
                                                         ) AND
-                                                        p.cdate < NOW()
+                                                        a.date_c < NOW()
                                                     ORDER BY
-                                                        p.id DESC
+                                                        a.id DESC
                                                     LIMIT ?d, ?d;",
-                                                    isset($_SESSION['user'])? $_SESSION['user']['id']: 0,
-                                                    $iLimit*$iPage, 
-                                                    $iLimit)){
+                                                    ($iPage - 1) * $iPPP, 
+                                                    $iPPP)){
                     return array(
-                        'total' => $iCnt, 
+                        'total' => (int)ceil($iTotal / $iPPP), 
                         'data'  => $aData
                     );
                 }

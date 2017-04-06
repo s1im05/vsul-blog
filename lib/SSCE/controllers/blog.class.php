@@ -4,7 +4,7 @@ namespace SSCE\Controllers;
 class Blog extends Base {
     
     protected $_sTemplate  = 'blog.tpl.php';
-    
+	
     public function allAction($sPageUrl, $iPage){
 		
 		$oArticleList = new \SSCE\Models\ArticleList($this->options);
@@ -12,7 +12,7 @@ class Blog extends Base {
 		
         $this->view->assign('aData', $aRes['page']);
         $this->view->assign('sMenuActive', 'all');
-        $this->view->assign('iPageActive', (int)$iPage);
+        $this->view->assign('iPageActive', (int)$iPage ? (int)$iPage : 1);
         $this->view->assign('iPagesCount', $aRes['total']);
     }
 	
@@ -22,8 +22,9 @@ class Blog extends Base {
 		$aRes = $oArticleList->getChapterPage($sChapter, (int)$iPage);
 		
         $this->view->assign('aData', $aRes['page']);
+        $this->view->assign('sPgPrefix', "/{$sChapter}");
         $this->view->assign('sMenuActive', $sChapter);
-        $this->view->assign('iPageActive', $iPage);
+        $this->view->assign('iPageActive', (int)$iPage ? (int)$iPage : 1);
         $this->view->assign('iPagesCount', $aRes['total']);
     }
     

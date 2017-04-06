@@ -24,6 +24,12 @@
             "action": "index"
         },
 		{
+            "path": "\\/search\\/(.{1,255})\\/page\\/(\\d+)?",
+            "controller": "search",
+            "action": "search",
+            "params": ["query", "page"]
+        },
+		{
             "path": "\\/search\\/(.{1,255})",
             "controller": "search",
             "action": "search",
