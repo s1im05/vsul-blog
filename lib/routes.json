@@ -72,6 +72,12 @@
             "controller": "blog",
             "action": "byName",
             "params": ["name"]
+        },
+		{
+            "path": "\\/ajax\\/obs",
+            "controller": "obs",
+            "action": "send"
         }
+		
     ]
 }

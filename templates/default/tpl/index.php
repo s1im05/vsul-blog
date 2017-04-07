@@ -80,10 +80,20 @@
 				<h4 class="modal-title">Отправить сообщение</h4>
 			</div>
 			<div class="modal-body">
-				<p>One fine body&hellip;</p>
+				<div class="form-group">
+					<label class="hidden-xs">Тема</label>
+					<div><input placeholder="Тема" class="form-control" type="text" name="title" maxlength="100"></div>
+				</div>
+				<div class="form-group">
+					<label class="hidden-xs">Сообщение</label>
+					<div><textarea placeholder="Сообщение" class="form-control" rows="5" name="text"></textarea></div>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Отправить</button>
+				<button type="button" class="btn btn-primary btn-send-ajax" id="obsSend">
+					<i class="fa fa-spinner fa-spin"></i>
+					Отправить
+				</button>
 				<button type="button" class="btn btn-default modal-close">Отмена</button>
 			</div>
 		</div>

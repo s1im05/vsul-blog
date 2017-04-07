@@ -129,3 +129,9 @@ a {
     padding: 100px 0;
     background: #eee;
 }
+.btn-send-ajax > .fa {
+	display: none;
+}
+.btn-send-ajax[disabled] > .fa {
+	display: inline-block;
+}

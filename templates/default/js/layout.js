@@ -29,25 +29,39 @@
 		};
 	
 	$(() => { // on document ready
-		$('#navBtn').on('click', (e) => {
+		/* nav */
+		$('#navBtn').on('click', e => {
 			$('#navMenu').toggle();
 		})
-		.on('blur', (e) => {
+		.on('blur', e => {
 			w.setTimeout(() => {
 				$('#navMenu').hide();
 			}, 100);
 		});
+		
+		/* obs */
 		$('#obs').on('click', e => {
+			$('#modalObs input, #modalObs textarea').val([]);
 			$('#modalBackdrop').removeClass('hidden');
 			$('#modalObs').show();
 		});
-		
-		$('.modal').on('click', '.modal-close', function(e){
+		$('#modalObs').on('click closeModal', '.modal-close', function(e) {
 			$('#modalBackdrop').addClass('hidden');
 			$('#modalObs').hide();
 		});
+		$('#obsSend').on('click', function(e) {
+			let data = {};
+			$('#modalObs input, #modalObs textarea').each(function(i) {
+				data[$(this).attr('name')] = $(this).val();
+			});
+			$(this).prop('disabled', true);
+			$.post('/ajax/obs', data, res => {
+				$(this).prop('disabled', false);
+				$('#modalObs .modal-close:first').trigger('closeModal');
+			});
+		});
 
-		
+		/* search */
 		$('#search, #searchXs').on('keypress', function(e) {
 			if (e.keyCode === 13) {
 				w.location.href = `/search/${w.encodeURIComponent($(this).val() + '')}`;
