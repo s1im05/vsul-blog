@@ -63,9 +63,9 @@
         <p>
 			VSul &copy; 2017
 			<span class="pull-right">
-				<a id="obs"><i class="fa fa-envelope-o"></i></a>
+				<a id="obs"><i class="fa fa-2x fa-envelope-o"></i></a>
 				&nbsp;
-				<a href="/rss"><i class="fa fa-rss-square"></i></a>
+				<a href="/rss"><i class="fa fa-2x fa-rss-square"></i></a>
 			</span>
 		</p>
     </div>
