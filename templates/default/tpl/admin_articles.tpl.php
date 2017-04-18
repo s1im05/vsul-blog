@@ -72,6 +72,7 @@
 				</td>
                 <td><?=$aPost['title']?></td>
                 <td class="h-nowrap">
+					<a data-id="<?=$aPost['id']?>" class="btn b-toggle <?=$aPost['draft'] ? 'btn-default' : 'active btn-success'?>"><i class="fa fa-eye"></i></a>
                     <a data-id="<?=$aPost['id']?>" class="btn btn-warning b-edit"><i class="fa fa-edit"></i></a>
                     <a data-id="<?=$aPost['id']?>" class="btn btn-danger b-delete"><i class="fa fa-trash"></i></a>
                 </td>

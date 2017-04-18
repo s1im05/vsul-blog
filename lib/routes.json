@@ -6,6 +6,12 @@
             "action": "error404",
             "header": "HTTP/1.0 404 Not Found"
         },
+        {
+            "path": "\\/403",
+            "controller": "error",
+            "action": "error403",
+            "header": "HTTP/1.0 403 Forbidden"
+        },
 		{
             "path": "\\/(page\\/(\\d+))?",
             "controller": "blog",
@@ -34,6 +40,18 @@
             "controller": "search",
             "action": "search",
             "params": ["query"]
+        },
+		{
+            "path": "\\/tag\\/(.{1,255})\\/page\\/(\\d+)?",
+            "controller": "tag",
+            "action": "index",
+            "params": ["tag", "page"]
+        },
+		{
+            "path": "\\/tag\\/(.{1,255})",
+            "controller": "tag",
+            "action": "index",
+            "params": ["tag"]
         },
 		{
             "path": "\\/logout",
@@ -77,7 +95,16 @@
             "path": "\\/ajax\\/obs",
             "controller": "obs",
             "action": "send"
-        }
-		
+        },
+		{
+            "path": "\\/ajax\\/admin\\/tags",
+            "controller": "ajax_admin",
+            "action": "tag"
+        },
+		{
+            "path": "\\/ajax\\/admin\\/comment",
+            "controller": "ajax_admin",
+            "action": "comment"
+        }	
     ]
 }

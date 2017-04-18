@@ -1,56 +1,37 @@
-<div class="b-post__panel">
-    <div class="media">
-        <div class="media-left">
-            <a href="/home">
-                <img class="media-object b-avatar" src="<?=$aUser['photo']?$aUser['photo']:$path.'/img/user.jpg'?>">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading">
-                <?=htmlspecialchars($aUser['first_name'].' '.$aUser['last_name'])?> 
-                <a href="#" title="Редактировать основные настройки" data-toggle="modal" data-target="#home_edit">(<?=htmlspecialchars($aUser['nickname'])?>)</a> 
-                <a class="btn btn-default btn-xs" href="/logout"><i class="fa fa-sign-out"></i>&nbsp; выйти</a>
-            </h4>
-            <p>
-            <? if ($sSuccess) :?>
-                <span class="text-success"><?=$sSuccess?></span>
-            <? endif;?>
-            <? if ($sError) :?>
-                <span class="text-danger"><?=$sError?></span>
-            <? endif;?>
-            &nbsp;</p>
-        </div>
-    </div>
+<div class="c-usercard">
+	<p><img class="c-usercard__photo" src="<?=$aUser['photo'] ? $aUser['photo'] : $path.'/img/user.jpg'?>"></p>
+	<h4 class="c-usercard__title"><?=htmlspecialchars($aUser['nickname'])?></h4>
+	<p>		
+		(<?=htmlspecialchars($aUser['first_name'].' '.$aUser['last_name'])?>)
+	</p>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="home_edit">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post" action="/home">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Основные настройки</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="home_form_name" class="control-label">Никнейм:</label>
-                        <input type="text" name="nickname" maxlength="30" value="<?=htmlspecialchars($aUser['nickname'])?>" class="form-control" id="home_form_name" placeholder="Никнейм">
-                    </div>
-                    <div class="form-group">
-                        <label for="home_form_gender" class="control-label">Пол:</label>
-                        <div class="btn-group btn-radio" role="group" data-target="#inp_gender">
-                            <button type="button" title="мужской" data-value="M" class="btn btn-<?=$aUser['gender'] == 'M'?'primary':'default'?>"><i class="fa fa-fw fa-male"></i></button>
-                            <button type="button" title="женский" data-value="F" class="btn btn-<?=$aUser['gender'] == 'F'?'primary':'default'?>"><i class="fa fa-fw fa-female"></i></button>
-                            <button type="button" title="не выбрано" data-value="U" class="btn btn-<?=$aUser['gender'] == 'U'?'primary':'default'?>"><i class="fa fa-fw fa-question"></i></button>
-                        </div>
-                        <input id="inp_gender" type="hidden" name="gender" value="<?=$aUser['gender']?>" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" name="save" class="btn btn-primary">Обновить</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="c-card">
+	<div class="c-card__head clearfix">
+		<ul class="nav nav-pills c-usercard__nav">
+			<li role="presentation" class="active"><a href="#">Профиль</a></li>
+			<li role="presentation"><a href="#">Комментарии</a></li>
+			<li role="presentation"><a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;Выйти</a></li>
+		</ul>
+	</div>
+	<hr />
+	<div class="c-card__body">
+		<form method="post" action="/home">
+			<div class="form-group">
+				<label for="home_form_name" class="control-label">Никнейм:</label>
+				<input type="text" name="nickname" maxlength="30" value="<?=htmlspecialchars($aUser['nickname'])?>" class="form-control" id="home_form_name" placeholder="Никнейм">
+			</div>
+			<div class="form-group">
+				<label for="home_form_name" class="control-label">Пол:</label>
+				<div class="radio">
+					<label><input type="radio" name="gender" value="M" <?=$aUser['gender'] === 'M' ? 'checked' : ''?>>&nbsp;мужской</label><br>
+					<label><input type="radio" name="gender" value="F" <?=$aUser['gender'] === 'F' ? 'checked' : ''?>>&nbsp;женский</label><br>
+					<label><input type="radio" name="gender" value="U" <?=$aUser['gender'] === 'U' ? 'checked' : ''?>>&nbsp;не указывать</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" name="save" class="btn btn-primary">Обновить</button>
+			</div>
+		</form>
+	</div>
 </div>

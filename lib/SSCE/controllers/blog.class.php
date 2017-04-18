@@ -32,11 +32,15 @@ class Blog extends Base {
 		$oArticle = new \SSCE\Models\Article($this->options);
         if ($aPost  = $oArticle->getByName($sName)){
             
+			$oTags = new \SSCE\Models\Tags($this->options);
             $oUser   = new \SSCE\Models\User($this->options);
             $this->_getComments($aPost['id'], $oUser);
             
+			$aPost['tags'] = $oTags->getList((int)$aPost['id']);
+			
 			$this->setTitle($aPost['title']);
             $this->view->assign('aPost', $aPost);
+            $this->view->assign('aTags', $oTags->getList((int)$aPost['id']));
 			$this->view->assign('sMenuActive', $aPost['chapter']);
             $this->setTemplate('article.tpl.php');
         } else {
@@ -45,34 +49,12 @@ class Blog extends Base {
     }
     
     private function _getComments($iPostId, $oUser){
+		$oComments = new \SSCE\Models\Comments($this->options);
+		
         if ($oUser->isLogged() && isset($_POST['comment']) && trim($_POST['comment'])){
-            $iId    = $this->db->query("INSERT INTO 
-                                                    ?_comments 
-                                                SET
-                                                    post_id     = ?d,
-                                                    user_id     = ?d,
-                                                    text        = ?",
-                                                $iPostId,
-                                                $oUser->id,
-                                                trim($_POST['comment']) );
-            $this->db->query("UPDATE LOW_PRIORITY ?_posts SET comments = comments+1 WHERE id = ?d LIMIT 1;", $iPostId);                                    
-            $this->view->assign('bCommentAdded',    true);
-            $this->view->assign('iLastAdded',       $iId);
+			$oComments->addComment($_POST['comment'], $iPostId, $oUser->id);
+			$this->request->refresh();
         }
-        $aCommentList   = $this->db->select("SELECT 
-                                                        c.*,
-                                                        u.nickname,
-                                                        u.gender,
-                                                        u.photo
-                                                    FROM 
-                                                        ?_comments c,
-                                                        ?_users u
-                                                    WHERE
-                                                        c.post_id   = ?d AND
-                                                        c.user_id   = u.id
-                                                    ORDER BY
-                                                        c.id;",
-                                                    $iPostId);
-        $this->view->assign('aCommentList', $aCommentList);
+        $this->view->assign('aCommentList', $oComments->getCommentList((int)$iPostId));
     }
 }

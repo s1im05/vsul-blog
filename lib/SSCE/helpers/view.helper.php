@@ -17,3 +17,7 @@ function getChapterIcon($chapter) {
 			return 'fa fa-gamepad';
 	}
 }
+
+function logged() {
+	return isset($_SESSION['user']);
+}

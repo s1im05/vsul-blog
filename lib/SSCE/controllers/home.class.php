@@ -31,8 +31,8 @@ class Home extends Base {
             return;
         }
         
-        $cGender    = isset($_POST['gender'])?$_POST['gender']:'U';
-        if (in_array($_POST['gender'], array('M','F','U'))){
+        $cGender    = isset($_POST['gender']) ? $_POST['gender'] : 'U';
+        if (in_array($_POST['gender'], array('M', 'F', 'U'))){
             $_SESSION['user']['gender'] = $cGender;
         } else {
             $this->view->assign('sError', 'Ошибка сохранения поля "Пол"');

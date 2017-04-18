@@ -75,6 +75,12 @@ class Admin_Articles extends Admin {
             $this->db->query("DELETE FROM ?_articles WHERE id = ?d LIMIT 1;", $_POST['id']);
             $this->view->assign('sRequest', true);
             return;
-        }        
+        }
+
+        if (isset($_POST['toggle'])){
+            $this->db->query("UPDATE LOW_PRIORITY ?_articles SET draft = !draft WHERE id = ?d LIMIT 1;", $_POST['id']);
+            $this->view->assign('sRequest', true);
+            return;
+        } 		
     }
 }

@@ -124,7 +124,13 @@ a {
 
 .c-avatar {
     max-width: 50px;
-    max-height: 100px;
+    max-height: 50px;
+	border-radius: 50px;
+}
+.c-avatar-small {
+    max-width: 32px;
+    max-height: 32px;
+	border-radius: 32px;
 }
 .c-errorbody {
     padding: 100px 0;
@@ -135,4 +141,32 @@ a {
 }
 .btn-send-ajax[disabled] > .fa {
 	display: inline-block;
+}
+
+.c-main__container {
+	position: relative;
+}
+
+.c-usercard {
+	left: 15px;
+	right: 15px;
+	position: absolute;
+	top: -180px;	
+	text-align: center;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+}
+.c-usercard__title {
+	font-weight: bold;
+	font-size: 1.33em;
+}
+.c-usercard__photo {
+	width: 100px;
+	height: 100px;
+	border-radius: 10em;
+	border: 5px solid #fff;
+	box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+}
+.c-usercard__nav {
+	margin-top: 15px;
 }

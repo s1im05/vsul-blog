@@ -90,6 +90,18 @@ export const adminArticle = (w, $, u) => {
 			} else {
 				iUnblock(icon);
 			}
+		}).on('click', '.b-toggle', function(e){
+			e.preventDefault();
+			var icon    = $(this).children('i:first')[0],
+				self    = this;
+			iBlock(icon);
+			
+			$.post('articles/ajax', {
+				'id':       $(this).data('id'),
+				'toggle':   1
+			},function(data){
+				w.location.reload();
+			});
 		});
 		
 		$('textarea', '#main_form_panel').trumbowyg({

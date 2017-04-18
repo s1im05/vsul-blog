@@ -36,7 +36,7 @@
 		.on('blur', e => {
 			w.setTimeout(() => {
 				$('#navMenu').hide();
-			}, 100);
+			}, 200);
 		});
 		
 		/* obs */
@@ -56,8 +56,12 @@
 			});
 			$(this).prop('disabled', true);
 			$.post('/ajax/obs', data, res => {
-				$(this).prop('disabled', false);
-				$('#modalObs .modal-close:first').trigger('closeModal');
+				$(this).hide();
+				$('#modalObs .modal-body').html('<p class="text-success">Успешно отправлено</p>');
+				w.setTimeout(() => {
+					$(this).show().prop('disabled', false);
+					$('#modalObs .modal-close:first').trigger('closeModal');
+				}, 3000);				
 			});
 		});
 
@@ -85,5 +89,32 @@
 		}
 
 		$('#jumbo').css('background-image', 'url(' + genereateTexture(textureSize, iconSet) + ')');
+		
+		$('article').on('click', '.admin-tag-add', function(e) {
+			const articleId = $(this).closest('article').data('id'),
+				tag = window.prompt();
+
+			if (tag) {
+				$.post('/ajax/admin/tags', {'articleId': articleId, 'tag': tag, 'action': 'add'}, function(res) {
+					w.location.reload();
+				});
+			}
+		}).on('click', '.admin-tag-remove', function(e) {
+			const articleId = $(this).closest('article').data('id'),
+				tagId = $(this).data('tag-id');
+				
+			$.post('/ajax/admin/tags', {'articleId': articleId, 'tagId': tagId, 'action': 'remove'}, function(res) {
+				w.location.reload();
+			});
+		});
+		
+		$('.c-comment').on('click', '.admin-comment', function(e) {
+			const commentId = $(this).closest('.c-comment').data('id'),
+				state = $(this).data('state');
+				
+			$.post('/ajax/admin/comment', {'commentId': commentId, 'state': state}, function(res) {
+				w.location.reload();
+			});
+		});
 	});	
 })(jQuery, window);

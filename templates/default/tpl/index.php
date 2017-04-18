@@ -24,7 +24,15 @@
 			<a class="c-nav__link <?=$sMenuActive === 'travel' ? 'c-nav__link-active' : ''?>" href="/travel"><i class="fa fa-plane"></i>Путешествия</a>
 
 			<span class="c-nav__right">
-				<a class="c-nav__link"><i class="fa fa-user-circle"></i></a>
+				<? if (SSCE\H\logged()) :?>
+					<a href="/home">
+						<img class="media-object c-avatar-small" src="<?=$aUser['photo'] ? $aUser['photo'] : $path.'/img/user.jpg'?>">
+					</a>
+				<? else :?>
+					<a href="//loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru" class="c-nav__link loginza">
+						<i class="fa fa-user-circle"></i>
+					</a>
+				<? endif;?>
 			</span>
 			<span class="c-nav__search pull-right">
 				<input id="search" type="text" class="form-control pull-right" placeholder="Поиск...">
@@ -37,13 +45,19 @@
 			<i class="fa fa-bars"></i>
 		</button>
     </div>
-	
+
 	<ul class="dropdown-menu c-nav__menu-xs" id="navMenu">
+		<li <?=$sMenuActive === 'all' ? 'class="active"' : ''?>><a href="/"><i class="fa fa-home"></i>Главная</a></li>
 		<li <?=$sMenuActive === 'work' ? 'class="active"' : ''?>><a href="/work"><i class="fa fa-desktop"></i>Работа</a></li>
 		<li <?=$sMenuActive === 'games' ? 'class="active"' : ''?>><a href="/games"><i class="fa fa-gamepad"></i>Игры</a></li>
 		<li <?=$sMenuActive === 'travel' ? 'class="active"' : ''?>><a href="/travel"><i class="fa fa-plane"></i>Путешествия</a></li>
 		<li class="divider"></li>
-		<li><a><i class="fa fa-user-circle"></i>Войти</a></li>
+		<? if (SSCE\H\logged()) :?>
+			<li <?=$sMenuActive === 'home' ? 'class="active"' : ''?>><a href="/home"><i class="fa fa-user-circle"></i>Профиль</a></li>
+			<li><a href="/logout"><i class="fa fa-sign-out"></i>Выйти</a></li>
+		<? else :?>
+			<li><a href="//loginza.ru/api/widget?token_url=<?=urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])?>&lang=ru" class="loginza"><i class="fa fa-sign-in"></i>Войти</a></li>
+		<? endif;?>			
 	</ul>
 </nav>
 
@@ -94,7 +108,7 @@
 					<i class="fa fa-spinner fa-spin"></i>
 					Отправить
 				</button>
-				<button type="button" class="btn btn-default modal-close">Отмена</button>
+				<button type="button" class="btn btn-default modal-close">Закрыть</button>
 			</div>
 		</div>
 	</div>

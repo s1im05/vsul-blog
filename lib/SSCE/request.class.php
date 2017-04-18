@@ -57,6 +57,11 @@ class Request {
         header('Location: /404');
         exit();
     }
+	
+    public function go403() {
+        header('Location: /403');
+        exit();
+    }
 
     public function go($sUrl) {
         header('Location: '.$sUrl);
@@ -64,7 +69,7 @@ class Request {
     }
 
     public function refresh() {
-        header('Location: '.substr($_SERVER['REQUEST_URI'],0,strpos($_SERVER['REQUEST_URI'],'?')));
+        header("Location: {$_SERVER['REQUEST_URI']}");
         exit();
     }
 }
