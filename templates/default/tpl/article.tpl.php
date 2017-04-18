@@ -12,7 +12,7 @@
 						&nbsp;&nbsp;
 					<? endif;?>
 					<? foreach ($aPost['tags'] as $iKey => $sTag) :?>
-						<a href="/tag/<?=$sTag?>"><i class="fa fa-tag"></i>&nbsp;<?=$sTag?></a>
+						<a href="/tag/<?=htmlspecialchars($sTag)?>"><i class="fa fa-tag"></i>&nbsp;<?=$sTag?></a>
 						<? if ($aUser['role'] === 'admin') :?>
 							<button class="btn btn-default btn-xs admin-tag-remove" data-tag-id="<?=$iKey?>"><i class="fa fa-times text-danger"></i></button>
 						<? endif;?>
