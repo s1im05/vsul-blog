@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VSul<?=$title ? ' &ndash; '.$title : ''?></title>
-	
-    <link href="<?=$path?>/img/favicon.ico" type="image/x-icon" rel="icon" />
-    <link href="<?=$path?>/img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-	
+    <link href="<?=$path?>/img/favicon.png" type="image/x-icon" rel="icon" />	
 	<link href="/dist/main-styles.css" rel="stylesheet">	    
     <script type="text/javascript" src="/dist/main-bundle.js"></script>
     <script type="text/javascript" src="//loginza.ru/js/widget.js"></script>
