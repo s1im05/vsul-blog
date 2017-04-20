@@ -47,8 +47,8 @@ class User extends Base {
     public function loginLoginza($sToken){
 		
 		// fake login
-		//$aUser  = $this->db->selectRow("SELECT * FROM ?_users WHERE id = ?d LIMIT 1;", 1);
-        //$_SESSION['user']   = $aUser;
+		$aUser  = $this->db->selectRow("SELECT * FROM ?_users WHERE id = ?d LIMIT 1;", 1);
+        $_SESSION['user']   = $aUser;
 		
         if (!$sToken){
             return $this;

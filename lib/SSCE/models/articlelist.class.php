@@ -24,8 +24,7 @@ class ArticleList extends Base {
 														(
 															SELECT 
 																	t2.*, 
-																	at.article_id, 
-																	t2.id ARRAY_KEY 
+																	at.article_id
 																FROM 
 																	?_tags t2, 
 																	?_articles_tags at 
@@ -52,7 +51,7 @@ class ArticleList extends Base {
 				unset($aRes[$id]['tag_id']);
 			}
 			if ($aVal['tag_name'] !== NULL) {
-				$aRes[$id]['tags'][(int)$aVal['tag_id']] = $aVal['tag_name'];
+				$aRes[$id]['tags'][] = $aVal['tag_name'];
 			}
 		}
 				

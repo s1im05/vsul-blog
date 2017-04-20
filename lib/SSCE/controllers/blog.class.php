@@ -30,7 +30,7 @@ class Blog extends Base {
     
     public function byNameAction($sName){
 		$oArticle = new \SSCE\Models\Article($this->options);
-        if ($aPost  = $oArticle->getByName($sName)){
+        if ($aPost  = $oArticle->getByName($sName, true)){
             
 			$oTags = new \SSCE\Models\Tags($this->options);
             $oUser   = new \SSCE\Models\User($this->options);

@@ -25,7 +25,7 @@ a {
     background: #eee;
 }
 .b-loginform {
-    padding: .5em 1em;
+    padding: .5em 1em 2em 1em;	
 }
 .b-btnpadded {
     margin-top: 8px;
@@ -50,4 +50,27 @@ a {
 }
 .h-nowrap {
     white-space: nowrap;
+}
+.panel-body {
+	position: relative;
+	min-height: 100px;
+}
+.loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100;
+	background: #000;
+	opacity: .2;
+	color: #999;
+}
+.loading > .fa {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -20px;
+	margin-top: -20px;
+	font-size: 40px;
 }

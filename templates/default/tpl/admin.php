@@ -23,7 +23,10 @@
                     <li <?=$sMenuActive == 'articles' ? 'class="active"':''?>><a href="/adm_panel/articles">Статьи</a></li>
                     <li class="visible-xs"><a href="/adm_panel/logout">Выйти</a></li>
                 </ul>
-                <a class="btn btn-md b-btnpadded btn-default pull-right hidden-xs" href="/adm_panel/logout"><i class="fa fa-fw fa-sign-out"></i></a>
+				<div class="btn-group pull-right hidden-xs">
+					<a class="btn btn-md b-btnpadded btn-default" href="/" target="_blank"><i class="fa fa-fw fa-home"></i></a>
+					<a class="btn btn-md b-btnpadded btn-default" href="/adm_panel/logout"><i class="fa fa-fw fa-sign-out"></i></a>
+				</div>
             </div>
         </nav>
         

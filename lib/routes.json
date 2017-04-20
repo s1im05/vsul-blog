@@ -86,6 +86,12 @@
             "header": "Content-type: application/json; charset=UTF-8"
         },
 		{
+            "path": "\\/adm_panel\\/dashboard",
+            "controller": "admin_dashboard",
+            "action": "index",
+            "header": "Content-type: application/json; charset=UTF-8"
+        },
+		{
             "path": "\\/a\\/([0-9a-z_-]{3,})",
             "controller": "blog",
             "action": "byName",
@@ -94,17 +100,20 @@
 		{
             "path": "\\/ajax\\/obs",
             "controller": "obs",
-            "action": "send"
+            "action": "send",
+			"header": "Content-type: application/json; charset=UTF-8"
         },
 		{
             "path": "\\/ajax\\/admin\\/tags",
             "controller": "ajax_admin",
-            "action": "tag"
+            "action": "tag",
+			"header": "Content-type: application/json; charset=UTF-8"
         },
 		{
             "path": "\\/ajax\\/admin\\/comment",
             "controller": "ajax_admin",
-            "action": "comment"
+            "action": "comment",
+			"header": "Content-type: application/json; charset=UTF-8"
         }	
     ]
 }

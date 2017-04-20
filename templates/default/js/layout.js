@@ -1,3 +1,5 @@
+import hljs from '../../../node_modules/highlightjs/highlight.pack.js';
+
 (($, w, u) => {
 	
 	const textureSize = 210,
@@ -115,6 +117,10 @@
 			$.post('/ajax/admin/comment', {'commentId': commentId, 'state': state}, function(res) {
 				w.location.reload();
 			});
+		});
+		
+		$('article code').each(function(i, block) {
+			hljs.highlightBlock(block);
 		});
 	});	
 })(jQuery, window);

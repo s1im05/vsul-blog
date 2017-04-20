@@ -1,10 +1,25 @@
 body {
-    font-family: "Calibri", sans-serif;
+    font-family: Helvetica, sans-serif;
     font-size: 16px;
 	background: #fff;
 }
 a {
     cursor: pointer;
+}
+code {
+	font-family: monospace;
+	white-space: pre;
+	border: 1px solid #ddd;
+}
+kbd {
+	background: #ccc;
+	color: #344;
+	border-bottom: 2px solid #999;
+	border-right: 3px solid #999;
+	padding: 4px 5px 1px 5px;
+	border-radius: 5px;
+	font-family: monospace;
+	font-size: .75em;
 }
 .modal {
 	overflow: hidden;
@@ -38,7 +53,7 @@ a {
     margin-right: 20px;
 }
 .c-nav__link > .fa {
-	width: 1.5em;
+	margin-right: 5px;
 }
 .c-nav__search {
 	margin-right: 20px;
@@ -103,7 +118,7 @@ a {
 	margin-bottom: 1em;
 }
 .c-card__head {
-    padding: 0 60px 0 15px;
+    padding: 0 15px;
     position: relative;
 }
 .c-card__body {

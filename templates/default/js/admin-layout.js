@@ -1,4 +1,5 @@
 import {adminArticle} from './admin-article.js';
+import {adminDashboard} from './admin-dashboard.js';
 
 (function(w, $, u){
 
@@ -13,5 +14,7 @@ import {adminArticle} from './admin-article.js';
 		case '/adm_panel/articles':
 			adminArticle(w, $);
 			break;
+		default:
+			adminDashboard(w, $);
 	}
 })(window, jQuery);

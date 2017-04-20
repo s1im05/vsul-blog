@@ -68,7 +68,7 @@
                 <td><?=$aPost['id']?></td>
                 <td class="hidden-xs">
 					<i class="<?=SSCE\H\getChapterIcon($aPost['chapter'])?>"></i>
-					<?=$aPost['name']?>
+					<a href="/a/<?=$aPost['name']?>" target="_blank"><?=$aPost['name']?></a>
 				</td>
                 <td><?=$aPost['title']?></td>
                 <td class="h-nowrap">

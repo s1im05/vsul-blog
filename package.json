@@ -22,6 +22,7 @@
   "homepage": "https://github.com/s1im05/vvv#readme",
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "highlightjs": "^9.10.0",
     "jquery": "^3.2.1",
     "webpack": "^2.3.3"
   },
