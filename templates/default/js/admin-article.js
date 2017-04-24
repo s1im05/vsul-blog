@@ -111,5 +111,9 @@ export const adminArticle = (w, $, u) => {
 		$('#main_form_panel').on('click', '.b-cancel', function(e) {
 			$('#main_form_panel').addClass('hidden');
 		});
+		
+		setInterval(() => {
+			$.post('articles/ajax', {keepSessionAlive: 1});
+		}, 5 * 60 * 1000);		
 	});
 }
