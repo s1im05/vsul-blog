@@ -15,48 +15,43 @@ class ArticleList extends Base {
 		
 		$iPPP = $this->config->project->postsppage;
         $aData  = $this->db->selectPage($iTotal, "SELECT 
-														a.*,
-														t1.name AS tag_name,
-														t1.id AS tag_id
+														a.*
 													FROM 
 														?_articles a
-													LEFT JOIN
-														(
-															SELECT 
-																	t2.*, 
-																	at.article_id
-																FROM 
-																	?_tags t2, 
-																	?_articles_tags at 
-																WHERE 
-																	t2.id = at.tag_id
-																ORDER BY
-																	t2.weight DESC
-														) t1
-													ON
-														t1.article_id = a.id
 													WHERE
 														a.draft = 0
 													{$sWhere}
 													ORDER BY 
 														a.date_c DESC 
 													LIMIT ?d, ?d;", ((int)$iPage - 1) * $iPPP, $iPPP);
-		$aRes = array();
-		foreach($aData as $aVal) {
-			$id = (int)$aVal['id'];
-			if (!isset($aRes[$id])) {
-				$aRes[$id] = $aVal;
-				$aRes[$id]['tags'] = array();
-				unset($aRes[$id]['tag_name']);
-				unset($aRes[$id]['tag_id']);
+		if ($aData) {
+			$aIds = array();
+			foreach($aData as $aVal) {
+				$aIds[] = (int)$aVal['id'];
 			}
-			if ($aVal['tag_name'] !== NULL) {
-				$aRes[$id]['tags'][] = $aVal['tag_name'];
+			$aTags = $this->db->select("SELECT 
+												t.name AS tag_name,
+												at.article_id
+											FROM 
+												?_tags t, 
+												?_articles_tags at 
+											WHERE 
+												at.article_id IN (?a) AND
+												at.tag_id = t.id", $aIds);
+			if ($aTags) {
+				$aTagsF = array();
+				foreach ($aTags as $aVal) {
+					$aTagsF[(int)$aVal['article_id']][] = $aVal['tag_name'];
+				}
+				
+				foreach($aData as &$aVal) {
+					$aVal['tags'] = $aTagsF[(int)$aVal['id']];
+				}
 			}
 		}
-				
+
 		return array(
-			'page' => $aRes,
+			'page' => $aData,
 			'total' => (int)ceil($iTotal / $iPPP)
 		);
 	}
