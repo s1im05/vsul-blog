@@ -15,8 +15,20 @@ class Admin_Dashboard extends Admin {
         }
 		
         if (isset($_POST['obs'])){
-            $aRes	= $this->db->select("SELECT * FROM ?_obs ORDER BY id DESC LIMIT 10;");
+            $aRes	= $this->db->select("SELECT * FROM ?_obs WHERE opened = 0 ORDER BY id DESC LIMIT 10;");
             $this->view->assign('sRequest', $aRes);
+            return;
+        }
+		
+        if (isset($_POST['obsOpen'])){
+            $this->db->select("UPDATE LOW_PRIORITY 
+									?_obs
+								SET
+									opened = 1
+								WHERE 
+									id = ?d
+								LIMIT 1;", $_POST['obsOpen']);
+            $this->view->assign('sRequest', true);
             return;
         }
 		
