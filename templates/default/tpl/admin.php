@@ -19,7 +19,7 @@
                 <a href="/adm_panel" class="navbar-brand">Панель управления</a>
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav xs-menu">
                     <li <?=$sMenuActive == 'articles' ? 'class="active"':''?>><a href="/adm_panel/articles">Статьи</a></li>
                     <li class="visible-xs"><a href="/adm_panel/logout">Выйти</a></li>
                 </ul>

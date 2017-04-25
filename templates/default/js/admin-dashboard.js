@@ -45,7 +45,10 @@ export const adminDashboard = (w, $, u) => {
 			}, (res) => {
 				let html = $('<ul class="list-group" />');
 				res.forEach(f => {
-					const li = $('<li class="list-group-item" />').text(f.text);
+					const a = $(`<a target="_blank" href="/a/${f.article_name}#comment_${f.id}" />`).text('#'),
+						comment = f.is_deleted === '1' ? $('<strike />').text(' ' + f.text) : $('<span />').text(' ' + f.text),
+						btn = $('<button class="btn btn-xs toggleCommentDelete pull-right" />').data('id', f.id).append('<i class="fa fa-check" />'),
+						li = $('<li class="list-group-item" />').append(btn).append(a).append(comment);
 					html.append(li);
 				});
 				field.html(html);
@@ -63,6 +66,12 @@ export const adminDashboard = (w, $, u) => {
 		});
 		loadLastComments('#last_comments').on('click', '.fa-refresh', (e) => {
 			loadLastComments('#last_comments');
+		}).on('click', '.toggleCommentDelete', function(e){
+			$.post('/adm_panel/dashboard', {
+				'toggleCommentDelete': $(this).data('id')
+			}, function(res){
+				loadLastComments('#last_comments');
+			});
 		});
 	});	
 }

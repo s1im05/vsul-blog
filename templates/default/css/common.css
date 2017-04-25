@@ -111,6 +111,9 @@ kbd {
     min-height: 200px;
     margin-bottom: 30px;
 }
+.c-post {
+	line-height: 1.6em;
+}
 .c-post img {
 	max-width: 100%;
 }
