@@ -30,13 +30,17 @@
 		<div class="c-card__body c-post">
 			<? if ($bList) :?>
 				<p><?=$aPost['text_short']?></p>
-				<p>
-					<a class="btn btn-primary btn-md" href="/a/<?=$aPost['name']?>"><?=$aPost['text_goto']?$aPost['text_goto']:'Далее'?></a>
-				</p>
+				<? if ($aPost['text']) :?>
+					<p>
+						<a class="btn btn-primary btn-md" href="/a/<?=$aPost['name']?>"><?=$aPost['text_goto']?$aPost['text_goto']:'Далее'?></a>
+					</p>
+				<? endif;?>
 			<? else :?>
 				<p><?=$aPost['text_short']?></p>
-				<hr />
-				<?=$aPost['text']?>
+				<? if ($aPost['text']) :?>
+					<hr />
+					<?=$aPost['text']?>
+				<? endif;?>
 			<? endif;?>
 		</div>
 		

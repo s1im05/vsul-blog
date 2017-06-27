@@ -18,7 +18,8 @@ class Rss extends Base {
                                                         FROM
                                                             ?_articles
                                                         WHERE
-                                                            date_c < NOW()
+                                                            date_c < NOW() and
+															draft = 0
                                                         ORDER BY
                                                             date_c DESC
                                                         LIMIT 50;"));
